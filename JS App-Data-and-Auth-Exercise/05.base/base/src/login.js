@@ -26,12 +26,11 @@ async function onLogin(ev) {
     }
 
     const data = await res.json();
-    const token= data.accessToken;
-    localStorage.setItem('token', token);
+    const token = data.accessToken;
+    localStorage.setItem("token", token);
 
-    window.location= './index.html'
-
+    window.location = "./index.html";
   } catch (err) {
-    alert(err.message)
+    alert(err.message);
   }
 }
