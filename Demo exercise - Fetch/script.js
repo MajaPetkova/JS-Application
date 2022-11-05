@@ -3,9 +3,9 @@ const url = "https://fakestoreapi.com/products";
 fetch("https://fakestoreapi.com/products")
   .then((res) => res.json())
   .then((data) => {
+    console.log(data)
     const cardItem = document.getElementById("cards");
     data.forEach(x=>{
-// console.log(x)
         cardItem.innerHTML += `<div class="card">
                   <h1 class="card__title">${x.title}</h1>
                  <img src=${x.image} alt="img" class="card__img">
