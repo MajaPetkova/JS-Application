@@ -9,7 +9,7 @@ async function githubUsers() {
       throw new Error(error.message)
     }
     const data = await response.json();
-    // console.log(data[3].avatar_url)
+    console.log(data[3].avatar_url)
     data.forEach((x) => {
       document.getElementById('root').innerHTML +=`<div class="cards">
       <img src=${x.avatar_url} alt="">
@@ -17,6 +17,9 @@ async function githubUsers() {
    
   </div>`
     });
+    
+    // const list= document.getElementById('list');
+    // list.value= data.map(x=> `${x.login} - ${x.avatar_url} `).join('\n')
   }catch(err){
     console.log(err.message)
     document.getElementById('root').textContent= err.message;
