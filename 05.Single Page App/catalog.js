@@ -1,7 +1,10 @@
 import { showSection, element } from "./dom.js";
 
+const section=document.getElementById('catalogSection');
+section.remove();
+
 export function showCatalogPage() {
-  showSection("catalogSection");
+  showSection(section);
   loadMovies()
 }
 

@@ -1,6 +1,9 @@
-export function showSection(sectionId) {
-    document.querySelectorAll("section").forEach((s) => s.style.display = "none");
-    document.getElementById(sectionId).style.display=''
+const main= document.querySelector('main')
+export function showSection(section) {
+main.replaceChildren(section)
+    // document.querySelectorAll("section").forEach((s) => s.style.display = "none");
+    // document.getElementById(sectionId).style.display=''
+
   }
   export function element(type, attributes, ...content){
     const result= document.createElement(type);
