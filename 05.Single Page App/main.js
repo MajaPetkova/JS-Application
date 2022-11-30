@@ -1,24 +1,25 @@
-const main = document.querySelector("main");
+// import { showSection } from './dom.js';
+
+import { showAboutPage, showHomePage } from "./home.js";
+import { showCatalogPage } from "./catalog.js"
+// const main = document.querySelector("main");
 document.querySelector("nav").addEventListener("click", onNavigate);
 
-showSection('homeSection')
+// start application in home view 
+showHomePage();
+
 function onNavigate(e) {
-      if (e.target.tagName == "BUTTON") {
+  if (e.target.tagName == "BUTTON") {
     switch (e.target.id) {
       case "homeBtn":
-        showSection("homeSection");
+        showHomePage()
         break;
       case "catalogBtn":
-        showSection("catalogSection");
+        showCatalogPage();
         break;
       case "aboutBtn":
-        showSection("contactSection");
+        showAboutPage()
         break;
     }
   }
-}
-
-function showSection(sectionId) {
-  document.querySelectorAll("section").forEach((s) => s.style.display = "none");
-  document.getElementById(sectionId).style.display=''
 }
