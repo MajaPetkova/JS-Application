@@ -4,6 +4,15 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="module" src="./main.js"></script>
+    <style>
+        #sections{
+         display: none;
+        }
+        label{
+            display: block;
+        }
+    </style>
     <title>Document</title>
 </head>
 <body>
@@ -11,31 +20,39 @@
         <a href="index.html"  id="homeBtn">Home</a>
         <a href="catalog.html" id="catalogBtn">Catalog<a>
         <a href="about.html" id="aboutBtn">About Us</a>
+        <a href="login.html" id="loginBtn">Login</a>
+        <a href="register.html" id="registerBtn">Register</a>
+        <a href="javascript:void(0)" id="logoutBtn">Logout</a>
     </nav>
     <main>
-        <section id="homeSection">
-            <h1>Home Page</h1>
-            <p>Welcome to our site</p>
-        </section>
-        <section id="catalogSection">
-            <ul>
-                <li>Product 1</li>
-                <li>Product 2</li>
-                <li>Product 3</li>
-            </ul>
-        </section>
-        <section id="loginSection">
-
-        </section>
-        <section id="registerSection">
-
-        </section>
-        <section id="aboutSection">
-            <h2>About US</h2>
-            <p>Contact information</p>
-            <p>Phone: 030-9487-392</p>
-        </section>
+       
     </main>
-    <script type="module" src="./main.js"></script>
+    <div id="sections"> <section id="homeSection">
+        <h1>Home Page</h1>
+        <p>Welcome to our site</p>
+    </section>
+    <section id="catalogSection">
+        <ul>
+            <!-- <li>Product 1</li>
+            <li>Product 2</li>
+            <li>Product 3</li> -->
+        </ul>
+    </section>
+    <section id="loginSection">
+        <h2>Login Page</h2>
+        <form action="">
+            <label>Email <input name="email" type="text" placeholder="Enter your email address"/></label>
+            <label>Password <input name="password" type="text" placeholder="Enter your password"/></label>
+            <input type="submit">
+        </form>
+    </section>
+    <section id="registerSection">
+         <h2>RegisterPage</h2>
+    </section>
+    <section id="aboutSection">
+        <h2>About US</h2>
+        <p>Contact information</p>
+        <p>Phone: 030-9487-392</p>
+    </section></div>
 </body>
 </html>
