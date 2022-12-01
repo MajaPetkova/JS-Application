@@ -3,6 +3,7 @@
 import { showAboutPage, showHomePage } from "./home.js";
 import { showCatalogPage } from "./catalog.js";
 import { showLoginPage } from "./login.js";
+import { showRegisterPage} from './register.js'
 // const main = document.querySelector("main");
 document.querySelector("nav").addEventListener("click", onNavigate);
 
@@ -11,8 +12,7 @@ const sections = {
   catalogBtn: showCatalogPage,
   aboutBtn: showAboutPage,
   loginBtn: showLoginPage,
-//   registerBtn: showRegisterPage,
-
+'registerBtn':showRegisterPage
 };
 // start application in home view
 showHomePage();
