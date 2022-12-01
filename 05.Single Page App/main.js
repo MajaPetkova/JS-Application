@@ -14,6 +14,7 @@ const sections = {
   loginBtn: showLoginPage,
 'registerBtn':showRegisterPage
 };
+updateUserNav()
 // start application in home view
 showHomePage();
 
@@ -24,5 +25,15 @@ function onNavigate(e) {
       e.preventDefault();
       view();
     }
+  }
+}
+export function updateUserNav(){
+  const userData=JSON.parse(sessionStorage.getItem('userData')) ;
+  if(userData != null){
+    document.querySelector('.userNav').style.display= 'inline-block';
+    document.querySelector('.guestNav').style.display= 'none'
+  }else{
+    document.querySelector('.guestNav').style.display= 'inline-block';
+    document.querySelector('.userNav').style.display= 'none';
   }
 }

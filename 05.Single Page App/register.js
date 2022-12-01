@@ -1,5 +1,6 @@
 import { showSection } from "./dom.js";
 import { showHomePage } from "./home.js";
+import { updateUserNav } from "./main.js";
 
 const section = document.getElementById("registerSection");
 section.remove();
@@ -41,7 +42,8 @@ async function onSubmit(e) {
         token: data.accessToken
     }
     sessionStorage.setItem('userData', JSON.stringify(userData));
-    showHomePage()
+    updateUserNav();
+    showHomePage();
   } catch (err) {
     alert(err.message);
   }
