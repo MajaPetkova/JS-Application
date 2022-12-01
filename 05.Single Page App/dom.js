@@ -10,7 +10,7 @@ main.replaceChildren(section)
 
     for(let [attr, value] of Object.entries(attributes || {})){
         if(attr.substring(0, 2)== 'on'){
-            result.addEvenetListenr(attr.substring(2).toLocaleLowerCase(), value)
+            result.addEventListener(attr.substring(2).toLocaleLowerCase(), value)
         }else{
             result[attr]=value
         }
