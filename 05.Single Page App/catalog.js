@@ -1,7 +1,9 @@
 import { showSection, element } from "./dom.js";
+import { showLoginPage } from "./login.js";
+import { updateUserNav } from "./main.js";
 
 const section = document.getElementById("catalogSection");
-const ul=  section.querySelector("ul");
+const ul = section.querySelector("ul");
 section.remove();
 
 export function showCatalogPage() {
@@ -10,11 +12,21 @@ export function showCatalogPage() {
 }
 
 async function loadMovies() {
-   ul.replaceChildren(element('p', {},'Loading...'))
-  const res = await fetch("http://localhost:3030/data/movies");
+  ul.replaceChildren(element("p", {}, "Loading..."));
+  const options = { method: "get", headers: {} };
+  const userData = JSON.parse(sessionStorage.getItem("userData"));
+  if (userData == null) {
+    options.headers["X-Authorization"] = userData.token;
+  }
+  const res = await fetch("http://localhost:3030/data/movies", options);
+  if (res.status == 403) {
+    sessionStorage.removeItem("userData");
+    updateUserNav();
+    showLoginPage();
+  }
   const movies = await res.json();
- ul.replaceChildren(...movies.map(createMovieCard));
-//   console.log(movies);
+  ul.replaceChildren(...movies.map(createMovieCard));
+  //   console.log(movies);
 }
 
 function createMovieCard(movie) {
