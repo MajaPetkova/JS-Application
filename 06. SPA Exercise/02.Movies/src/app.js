@@ -5,7 +5,8 @@
 // -implement DOM logic
 
 import { showHome } from "./home.js";
-
+import { showDetails} from './details.js'
+import { showCreate } from "./create.js";
 // order of views
 // - catalog (home view)
 // - login/register
@@ -15,4 +16,7 @@ import { showHome } from "./home.js";
 // - edit
 // - delete
 
-showHome()
+showHome();
+window.showHome= showHome;
+window.showHome=showDetails;
+window.showHome=showCreate;
