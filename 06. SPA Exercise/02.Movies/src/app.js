@@ -26,7 +26,7 @@ document.querySelector("nav").addEventListener("click", (e) => {
 
 
 // order of views
-// - catalog (home view)
+// x catalog (home view)
 // - login/register
 // - create
 // - details

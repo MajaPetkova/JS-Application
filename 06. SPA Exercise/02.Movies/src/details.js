@@ -9,6 +9,7 @@ section.remove();
 
 // display logic
 
-export function showDetails(){
+export function showDetails(movieId){
+    console.log(movieId)
     showView(section)
 }
