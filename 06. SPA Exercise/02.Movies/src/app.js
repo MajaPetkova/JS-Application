@@ -8,13 +8,14 @@ import { showRegister } from "./register.js";
 // -create async functions for requests
 // -implement DOM logic
 
+const nav= document.querySelector('nav')
 const views = {
   homeLink: showHome,
   loginLink: showLogin,
   registerLink: showRegister,
 };
 
-document.querySelector("nav").addEventListener("click", (e) => {
+nav.addEventListener("click", (e) => {
   if (e.target.tagName == "A") {
     const view = views[e.target.id];
     if (typeof view == "function") {
@@ -23,7 +24,15 @@ document.querySelector("nav").addEventListener("click", (e) => {
     }
   }
 });
+function updateNav(){
+  const userData=JSON.parse(sessionStorage.getItem('userData'));
+  if(userData != null){
+    console.log( [...nav.querySelectorAll('.user')])
+  [...nav.querySelectorAll('.user')].forEach(e=> e.style.display = 'block')
+  }else{
 
+  }
+}
 
 // order of views
 // x catalog (home view)
