@@ -12,18 +12,25 @@ section.remove();
 
 export function showDetails(movieId){
     console.log(movieId)
-    showView(section)
+    showView(section);
+    getMovie(movieId)
 }
 
 async function getMovie(id){
+    section.replaceChildren(element('p', {}, 'Loading...'))
     const res= await fetch('http://localhost:3030/data/movies/' + id);
     const data= await res.json()
    
-
+section.replaceChildren(createDetails(data))
 };
 
 function createDetails(movie){
-const el= element('div', {className:"container"}, 
+    const controls = element('div', {className: "col-md-4 text-center" }, 
+    element('h3', {className: 'my-3'}, `Movie description`),
+    element('p', {}, movie.description ),
+    )
+
+    const el= element('div', {className:"container"}, 
               element ('div', {className: "row bg-light text-dark"},
                  element('h1', {},`Movie title: ${movie.title}`),
                  element('div', {className: 'col-md-8'},
@@ -33,7 +40,7 @@ const el= element('div', {className:"container"},
                  )
                  );
                 
-                 return element
+                 return el
 }
 {/* <div class="container">
 <div class="row bg-light text-dark">
