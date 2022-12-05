@@ -26,21 +26,22 @@ async function onLogin(e) {
       },
       body: JSON.stringify({ email, password }),
     });
-    if(res.ok != true){
-        const error= await res.json();
-        throw new Error(error.message)
+    if (res.ok != true) {
+      const error = await res.json();
+      throw new Error(error.message);
     }
-    const data= await res.json();
-    sessionStorage.setItem('userData', JSON.stringify({
-       email:  data.email,
-       id: data._id,
-       token: data.accessToken
-    }));
-    showHome()
+    const data = await res.json();
+    sessionStorage.setItem("userData", JSON.stringify({
+        email: data.email,
+        id: data._id,
+        token: data.accessToken,
+      })
+    );
+    showHome();
     updateNav();
     form.reset();
   } catch (err) {
-    alert (err.message)
+    alert(err.message);
   }
   //   console.log(email, password);
 }

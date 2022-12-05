@@ -62,12 +62,14 @@ async function onLogout(ev) {
     },
   });
   sessionStorage.removeItem("userData");
+  updateNav()
   showLogin();
 }
 
 // order of views
 // x catalog (home view)
-// - login/register
+// x login/register
+// x logout
 // - create
 // - details
 // - likes
