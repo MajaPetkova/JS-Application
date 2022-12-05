@@ -1,3 +1,4 @@
+import { updateNav } from "./app.js";
 import { showView } from "./dom.js";
 import { showHome } from "./home.js";
 
@@ -36,6 +37,7 @@ async function onLogin(e) {
        token: data.accessToken
     }));
     showHome()
+    updateNav();
     form.reset();
   } catch (err) {
     alert (err.message)
