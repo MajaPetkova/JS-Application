@@ -20,24 +20,24 @@ async function getMovie(id){
     section.replaceChildren(element('p', {}, 'Loading...'));
 
     const requests=[
-
         fetch('http://localhost:3030/data/movies/' + id),
         fetch(`http://localhost:3030/data/likes?where=movieId%3D%22${id}%22&distinct=_ownerId&count`), 
     ]
     const userData= JSON.parse(sessionStorage.getItem('userData'));
     if(userData!= null){
-        requests.push( fetch(`/data/likes?where=movieId%3D%22${id}%22%20and%20_ownerId%3D%22${userData.id}%22`))
+        requests.push( fetch(`http://localhost:3030/data/likes?where=movieId%3D%22${id}%22%20and%20_ownerId%3D%22${userData.id}%22&count`))
     }
-    const [movieRes, likesRes]= await Promise.all(requests)
-    const[movieData, likes, hasLiked]= await Promise.all([
+    const [movieRes, likesRes, hasLikedRes]= await Promise.all(requests)
+    const [movieData, likes, hasLiked]= await Promise.all([
         movieRes.json(),
         likesRes.json(),
-        hasLiked && hasLiked.json()
+        hasLikedRes && hasLikedRes.json()
     ])
-    section.replaceChildren(createDetails(movieData, likes))
+    section.replaceChildren(createDetails(movieData, likes, hasLiked))
 };
 
-function createDetails(movie, likes){
+function createDetails(movie, likes, hasLiked){
+    console.log(hasLiked)
     const controls = element('div', {className: "col-md-4 text-center" }, 
     element('h3', {className: 'my-3'}, `Movie description`),
     element('p', {}, movie.description ),
@@ -48,7 +48,11 @@ function createDetails(movie, likes){
           controls.appendChild(element('a', {className: 'btn btn-danger', href: '#'}, 'Delete'));
           controls.appendChild(element('a', {className: 'btn btn-warning', href: '#'}, 'Edit'));
        }else{
-            controls.appendChild(element('a', {className: 'btn btn-primary', href: '#'}, 'Like'));
+            if(hasLiked){
+                controls.appendChild(element('a', {className: 'btn btn-primary', href: '#'}, 'Unlike'));
+            }else{
+                controls.appendChild(element('a', {className: 'btn btn-primary', href: '#', onClick: onLike}, 'Like'));
+            }
        }
     }
     controls.appendChild(element('span', {className: 'enrolled-span'}, `Liked: ${likes}`));
@@ -63,6 +67,21 @@ function createDetails(movie, likes){
                  )
                  );
                 
-                 return el
+                 return el;
+
+                 
+   async function onLike(){
+        const res = await fetch('http://localhost:3030/data/likes', {
+            method: 'POST',
+            headers: {
+                'Content-Type' : 'application/json',
+                'X-Authorization' : userData.token
+            },
+            body: JSON.stringify({
+                movieId : movie._id
+            })
+        });
+        showDetails(movie._id)
+  }
 }
 
