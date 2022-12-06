@@ -24,8 +24,8 @@ async function getMovie(id){
         fetch(`http://localhost:3030/data/likes?where=movieId%3D%22${id}%22&distinct=_ownerId&count`), 
     ]
     const userData= JSON.parse(sessionStorage.getItem('userData'));
-    if(userData!= null){
-        requests.push( fetch(`http://localhost:3030/data/likes?where=movieId%3D%22${id}%22%20and%20_ownerId%3D%22${userData.id}%22&count`))
+    if(userData != null){
+        requests.push( fetch(`http://localhost:3030/data/likes?where=movieId%3D%22${id}%22%20and%20_ownerId%3D%22${userData.id}%22`))
     }
     const [movieRes, likesRes, hasLikedRes]= await Promise.all(requests)
     const [movieData, likes, hasLiked]= await Promise.all([
@@ -48,8 +48,8 @@ function createDetails(movie, likes, hasLiked){
           controls.appendChild(element('a', {className: 'btn btn-danger', href: '#'}, 'Delete'));
           controls.appendChild(element('a', {className: 'btn btn-warning', href: '#'}, 'Edit'));
        }else{
-            if(hasLiked){
-                controls.appendChild(element('a', {className: 'btn btn-primary', href: '#'}, 'Unlike'));
+            if(hasLiked != 0){
+                controls.appendChild(element('a', {className: 'btn btn-primary', href: '#', onClick: onUnlike}, 'Unlike'));
             }else{
                 controls.appendChild(element('a', {className: 'btn btn-primary', href: '#', onClick: onLike}, 'Like'));
             }
@@ -72,7 +72,7 @@ function createDetails(movie, likes, hasLiked){
                  
    async function onLike(){
         const res = await fetch('http://localhost:3030/data/likes', {
-            method: 'POST',
+            method: 'post',
             headers: {
                 'Content-Type' : 'application/json',
                 'X-Authorization' : userData.token
@@ -83,5 +83,17 @@ function createDetails(movie, likes, hasLiked){
         });
         showDetails(movie._id)
   }
+                 
+  async function onUnlike(){
+    const likeId= hasLiked[0]._id;
+
+  await fetch('http://localhost:3030/data/likes/'+ likeId, {
+        method: 'delete',
+        headers: {
+            'X-Authorization' : userData.token
+        }
+    });
+    showDetails(movie._id)
+}
 }
 
