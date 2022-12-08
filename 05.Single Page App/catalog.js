@@ -1,6 +1,7 @@
 import { showSection, element } from "./dom.js";
 import { showLoginPage } from "./login.js";
 import { updateUserNav } from "./main.js";
+import * as api from './api/api.js'
 
 const section = document.getElementById("catalogSection");
 const ul = section.querySelector("ul");
