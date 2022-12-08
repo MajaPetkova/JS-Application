@@ -1,4 +1,4 @@
-const host = "http://localhost:3030/";
+const host = "http://localhost:3030";
 
 async function request(url, options) {
   try {
@@ -20,11 +20,12 @@ async function request(url, options) {
     throw err;
   }
 }
-function createOptions(method, data) {
+function createOptions(method = "get", data) {
   const options = {
     method,
     headers: {}
   };
+
   if (data != undefined) {
     options.headers["Content-Type"] = "application/json";
     options.body = JSON.stringify(data);
@@ -37,7 +38,7 @@ function createOptions(method, data) {
 }
 
 export async function get(url) {
-  return request(url, createOptions());
+  return request(url, createOptions('get'));
 }
 
 export async function post(url, data) {
