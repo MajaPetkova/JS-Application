@@ -6,10 +6,9 @@ async function request(url, options) {
     if (res.ok != true) {
       if (res.status == 403) {
         sessionStorage.removeItem("userData");
-      } else {
-        const error = await res.json();
-        throw new Error(error.message);
       }
+      const error = await res.json();
+      throw new Error(error.message);
     }
     if (res.status == 204) {
       return res;
@@ -24,13 +23,13 @@ async function request(url, options) {
 function createOptions(method, data) {
   const options = {
     method,
-    headers: {},
+    headers: {}
   };
   if (data != undefined) {
     options.headers["Content-Type"] = "application/json";
     options.body = JSON.stringify(data);
   }
-  const userData = JSON.parse(sessionStorage.getItem("userData")).token;
+  const userData = JSON.parse(sessionStorage.getItem("userData"));
   if (userData != null) {
     options.headers["X-Authorization"] = userData.token;
   }
@@ -42,13 +41,13 @@ export async function get(url) {
 }
 
 export async function post(url, data) {
-  return request(url, options("post", data));
+  return request(url, createOptions("post", data));
 }
 
 export async function put(url, data) {
-  return request(url, options("put", data));
+  return request(url, createOptions("put", data));
 }
 
 export async function del(url) {
-  return request(url, options("delete"));
+  return request(url, createOptions("delete"));
 }
