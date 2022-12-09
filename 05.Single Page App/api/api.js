@@ -52,3 +52,27 @@ export async function put(url, data) {
 export async function del(url) {
   return request(url, createOptions("delete"));
 }
+
+export async function login(email, password){
+    const res= await request('/users/login', createOptions('post', {email, password}));
+   const userData = {
+        email: res.email,
+        id: res._id,
+        token: res.accessToken
+    }
+    sessionStorage.setItem('userData', JSON.stringify(userData));
+}
+
+export async function register(email, password){
+    const res= await request('/users/register', createOptions('post', {email, password}));
+   const userData={
+        email: res.email,
+        id: res._id,
+        token: res.accessToken
+    }
+    sessionStorage.setItem('userData', JSON.stringify(userData))
+}
+export async function logout(){
+       await request('/users/logout', createOptions());
+       sessionStorage.removeItem()
+}
