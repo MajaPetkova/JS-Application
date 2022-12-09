@@ -4,6 +4,8 @@ import { showAboutPage, showHomePage } from "./home.js";
 import { showCatalogPage } from "./catalog.js";
 import { showLoginPage } from "./login.js";
 import { showRegisterPage } from "./register.js";
+import { logout } from "./api/data.js";
+
 // const main = document.querySelector("main");
 document.getElementById("logoutBtn").addEventListener("click", onLogout);
 document.querySelector("nav").addEventListener("click", onNavigate);
@@ -39,15 +41,8 @@ export function updateUserNav() {
 }
 async function onLogout(event) {
   event.stopImmediatePropagation();
+  await logout();
 
-  // const userData= sessionStorage.getItem('userData');
-  const { token } = JSON.parse(sessionStorage.getItem("userData"));
-  await fetch("http://localhost:3030/users/logout", {
-    headers: {
-      "X-Authorization": "token",
-    },
-  });
-  sessionStorage.removeItem("userData");
   updateUserNav();
   showHomePage()
 }

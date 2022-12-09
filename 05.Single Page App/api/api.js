@@ -55,7 +55,7 @@ export async function del(url) {
 
 export async function login(email, password){
     const res= await request('/users/login', createOptions('post', {email, password}));
-   const userData = {
+    const userData = {
         email: res.email,
         id: res._id,
         token: res.accessToken
@@ -65,7 +65,7 @@ export async function login(email, password){
 
 export async function register(email, password){
     const res= await request('/users/register', createOptions('post', {email, password}));
-   const userData={
+    const userData={
         email: res.email,
         id: res._id,
         token: res.accessToken
@@ -74,5 +74,5 @@ export async function register(email, password){
 }
 export async function logout(){
        await request('/users/logout', createOptions());
-       sessionStorage.removeItem()
+       sessionStorage.removeItem('userData')
 }
