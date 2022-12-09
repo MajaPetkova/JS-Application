@@ -5,28 +5,49 @@ import { showCatalogPage } from "./catalog.js";
 import { showLoginPage } from "./login.js";
 import { showRegisterPage } from "./register.js";
 import { logout } from "./api/data.js";
+import { showSection} from './dom.js'
 
 // const main = document.querySelector("main");
 document.getElementById("logoutBtn").addEventListener("click", onLogout);
 document.querySelector("nav").addEventListener("click", onNavigate);
-const sections = {
-  homeBtn: showHomePage,
-  catalogBtn: showCatalogPage,
-  aboutBtn: showAboutPage,
-  loginBtn: showLoginPage,
-  registerBtn: showRegisterPage,
+
+const views={
+  home: showHomePage,
+  catalog: showCatalogPage,
+  about: showAboutPage,
+  login: showLoginPage,
+  register: showRegisterPage
+}
+const links = {
+  homeBtn: 'home',
+  catalogBtn: 'catalog',
+  aboutBtn: 'about',
+  loginBtn: 'login',
+  registerBtn: 'register',
 };
 updateUserNav();
+
+const ctx = {
+  updateUserNav,
+  goto,
+  showSection
+};
 // start application in home view
 showHomePage();
 
 function onNavigate(e) {
   if (e.target.tagName == "A") {
-    const view = sections[e.target.id];
-    if (typeof view == "function") {
+    const name = links[e.target.id];
+    if(name){
       e.preventDefault();
-      view();
+      goto(name)
     }
+  }
+}
+function goto(name, ...params){
+  const view= views[name];
+  if (typeof view == "function") {
+    view(ctx, ...params);
   }
 }
 export function updateUserNav() {
@@ -44,5 +65,5 @@ async function onLogout(event) {
   await logout();
 
   updateUserNav();
-  showHomePage()
+  showHomePage();
 }
