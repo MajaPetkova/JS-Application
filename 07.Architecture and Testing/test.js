@@ -19,10 +19,18 @@ describe("Tests", async function () {
   after(async () => {
     await page.close();
   });
-  it("works", async () => {
-//  await (new Promise (res => setTimeout(res, 2000)))
-// expect(1).to.equal(1)
-   await page.goto('http://localhost:5501');
-   await page.screenshot({path:'page.png'})
+  //   it("works", async () => {
+  // //  await (new Promise (res => setTimeout(res, 2000)))
+  // // expect(1).to.equal(1)
+  //    await page.goto('http://localhost:5501/07.Architecture and Testing');
+  //    await page.screenshot({path:'page.png'})
+  //   });
+
+  it("loads and displays all books", async () => {
+    await page.goto("http://localhost:5501/07.Architecture and Testing");
+    await page.click("text=LOAD ALL BOOKS");
+    await page.waitForSelector('text=Harry Potter');
   });
+  const rows = await page.$$eval('tr', (rows)=> rows.map(r=>r.textContent.trim()));
+  console.log(rows)
 });
