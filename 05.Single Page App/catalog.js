@@ -7,8 +7,8 @@ const section = document.getElementById("catalogSection");
 const ul = section.querySelector("ul");
 section.remove();
 
-export function showCatalogPage() {
-  showSection(section);
+export function showCatalogPage(ctx) {
+  ctx.showSection(section);
   loadMovies();
 }
 

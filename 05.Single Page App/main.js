@@ -33,7 +33,7 @@ const ctx = {
   showSection
 };
 // start application in home view
-showHomePage();
+goto('home')
 
 function onNavigate(e) {
   if (e.target.tagName == "A") {
@@ -65,5 +65,5 @@ async function onLogout(event) {
   await logout();
 
   updateUserNav();
-  showHomePage();
+  goto('home')
 }

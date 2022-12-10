@@ -1,15 +1,15 @@
-import { showSection, element } from "./dom.js";
-import { showHomePage } from "./home.js";
-import { updateUserNav } from "./main.js";
+
 import * as api from "./api/data.js";
 
 const section = document.getElementById("loginSection");
 section.remove();
 const form = section.querySelector("form");
 form.addEventListener("submit", onSubmit);
+let ctx = null;
 
-export function showLoginPage() {
-  showSection(section);
+export function showLoginPage(ctxTarget) {
+  ctx = ctxTarget;
+  ctx.showSection(section);
 }
 async function onSubmit(event) {
   event.preventDefault();
@@ -20,6 +20,6 @@ async function onSubmit(event) {
 
   await api.login(email, password);
 
-  updateUserNav();
-  showHomePage();
+  ctx.updateUserNav();
+  ctx.goto("home");
 }

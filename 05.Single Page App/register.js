@@ -7,9 +7,11 @@ const section = document.getElementById("registerSection");
 section.remove();
 const form = section.querySelector("form");
 form.addEventListener("submit", onSubmit);
+let ctx = null;
 
-export function showRegisterPage() {
-  showSection(section);
+export function showRegisterPage(ctxTarget) {
+  ctx = ctxTarget;
+  ctx.showSection(section);
 }
 async function onSubmit(e) {
   e.preventDefault();
@@ -44,8 +46,8 @@ async function onSubmit(e) {
   //       token: data.accessToken
   //   }
   //   sessionStorage.setItem('userData', JSON.stringify(userData));
-    updateUserNav();
-    showHomePage();
+  ctx.updateUserNav();
+  ctx.goto("home");
   // } catch (err) {
   //   alert(err.message);
   // }
