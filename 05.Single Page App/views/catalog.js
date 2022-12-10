@@ -1,5 +1,5 @@
-import { showSection, element } from "./dom.js";
-import { getAllMovies } from "./api/data.js";
+import { element } from "../dom.js";
+import { getAllMovies } from "../api/data.js";
 
 // import  * as api from './api/api.js'
 

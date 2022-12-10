@@ -1,5 +1,5 @@
 
-import * as api from "./api/data.js";
+import * as api from "../api/data.js";
 
 const section = document.getElementById("loginSection");
 section.remove();

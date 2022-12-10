@@ -1,7 +1,5 @@
-import { register } from "./api/data.js";
-import { showSection } from "./dom.js";
-import { showHomePage } from "./home.js";
-import { updateUserNav } from "./main.js";
+import { register } from "../api/data.js";
+
 
 const section = document.getElementById("registerSection");
 section.remove();

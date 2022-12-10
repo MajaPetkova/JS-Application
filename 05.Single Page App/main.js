@@ -1,9 +1,9 @@
 // import { showSection } from './dom.js';
 
-import { showAboutPage, showHomePage } from "./home.js";
-import { showCatalogPage } from "./catalog.js";
-import { showLoginPage } from "./login.js";
-import { showRegisterPage } from "./register.js";
+import { showAboutPage, showHomePage } from "./views/home.js";
+import { showCatalogPage } from "./views/catalog.js";
+import { showLoginPage } from "./views/login.js";
+import { showRegisterPage } from "./views/register.js";
 import { logout } from "./api/data.js";
 import { showSection} from './dom.js'
 
