@@ -12,8 +12,19 @@ const mockData = {
   },
 };
 
+function json(data) {
+  return {
+    status: 200,
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  };
+}
+
 describe("Tests", async function () {
-  this.timeout(5000);
+  // this.timeout(5000);
 
   let page, browser;
 
@@ -39,14 +50,7 @@ describe("Tests", async function () {
 
   it("loads and displays all books", async () => {
     await page.route("**/jsonstore/collections/books", (route, request) => {
-      route.fulfill({
-        status: 200,
-        headers: {
-          "Access-Control-Allow-Origin": "*",
-         "Content-Type": "application/json",
-        },
-        body: JSON.stringify(mockData),
-      });
+      route.fulfill(json(mockData));
     });
     await page.goto("http://localhost:5501/07.Architecture and Testing");
     await page.click("text=LOAD ALL BOOKS");
@@ -60,5 +64,17 @@ describe("Tests", async function () {
     expect(rows[1]).to.contains("Rowling");
     expect(rows[2]).to.contains("Fundamentals");
     expect(rows[2]).to.contains("Svetlin");
+  });
+  it("can create book", async () => {
+    await page.goto("http://localhost:5501/07.Architecture and Testing");
+    await page.fill('form#createForm >> input[name="title"]', "Title");
+    await page.fill('form#createForm >> input[name="author"]', "Petre Prlicko");
+
+    // await page.waitForTimeout(60000)
+    const [request] = await Promise.all([
+      page.waitForRequest((request) => request.method() == "POST"),
+      page.click("form#createForm >> text=Submit"),
+    ]);
+    console.log(request);
   });
 });
