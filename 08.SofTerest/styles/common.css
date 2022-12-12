@@ -43,3 +43,6 @@ nav a {
 nav img {
   height: 3rem;
 }
+#views {
+  display: none;
+}
