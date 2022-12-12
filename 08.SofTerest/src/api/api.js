@@ -49,5 +49,30 @@ export async function put(url, data) {
   return request(url, createOptions("put", data));
 }
 export async function del(url) {
-    return request(url, createOptions("delete"));
+  return request(url, createOptions("delete"));
+}
+
+export async function login(email, password) {
+  const result = await post("/users/login", { email, password });
+  const userData = {
+    email: result.email,
+    id: result._id,
+    token: result.accessToken,
+  };
+  sessionStorage.setItem("userData", JSON.stringify(userData));
+}
+
+export async function register(email, password) {
+    const result = await post("/users/register", { email, password });
+    const userData = {
+      email: result.email,
+      id: result._id,
+      token: result.accessToken,
+    };
+    sessionStorage.setItem("userData", JSON.stringify(userData));
+  }
+
+  export async function logout(){
+    await get('/users/logout');
+    sessionStorage.removeItem('userData')
   }
