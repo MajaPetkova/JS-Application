@@ -29,7 +29,8 @@ describe("Tests", async function () {
   let page, browser;
 
   before(async () => {
-    browser = await chromium.launch({ headless: false });
+    // browser = await chromium.launch({ headless: false });
+    browser = await chromium.launch()
   });
   after(async () => {
     await browser.close();
@@ -67,7 +68,7 @@ describe("Tests", async function () {
   });
   it("can create book", async () => {
     await page.goto("http://localhost:5501/07.Architecture and Testing");
-    await page.fill('form#createForm >> input[name="title"]', "Title");
+    await page.fill('form#createForm >> input[name="title"]', "Book");
     await page.fill('form#createForm >> input[name="author"]', "Petre Prlicko");
 
     // await page.waitForTimeout(60000)
@@ -75,6 +76,10 @@ describe("Tests", async function () {
       page.waitForRequest((request) => request.method() == "POST"),
       page.click("form#createForm >> text=Submit"),
     ]);
-    console.log(request);
+    // console.log(request);
+    const data =JSON.parse(request.postData());
+  
+    expect(data.title).to.equal("Book");
+    expect(data.author).to.equal("Petre Prlicko");
   });
 });
