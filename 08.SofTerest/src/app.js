@@ -7,7 +7,7 @@ import { showDetailsPage } from "../views/details.js";
 import { showHomePage } from "../views/home.js";
 import { showLoginPage } from "../views/login.js";
 import { showRegisterPage } from "../views/register.js";
-import { showView } from "../views/dom.js"
+import { showView } from "../views/dom.js";
 
 const links = {
   homeLink: "home",
@@ -32,10 +32,12 @@ nav.addEventListener("click", onNavigate);
 const ctx = {
   goTo,
   showView,
+  updateUserNav
 };
-//Start application in home view
-goTo('home');
 
+updateUserNav()
+//Start application in home view
+goTo("home");
 
 function onNavigate(ev) {
   const name = links[ev.target.id];
@@ -44,9 +46,21 @@ function onNavigate(ev) {
     goTo(name);
   }
 }
+
 function goTo(name, ...params) {
   const view = views[name];
   if (typeof view == "function") {
     view(ctx, ...params);
+  }
+}
+
+function updateUserNav() {
+  const userData = JSON.parse(sessionStorage.getItem("userData"));
+  if (userData != null) {
+    [...nav.querySelectorAll(".user")].forEach(link => link.style.display = "block");
+    [...nav.querySelectorAll(".guest")].forEach(link => link.style.display = "none");
+  } else {
+    [...nav.querySelectorAll(".user")].forEach(link => link.style.display = "none");
+    [...nav.querySelectorAll(".guest")].forEach(link => link.style.display = "block");
   }
 }
