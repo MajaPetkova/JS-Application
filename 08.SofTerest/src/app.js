@@ -7,6 +7,7 @@ import { showDetailsPage } from "../views/details.js";
 import { showHomePage } from "../views/home.js";
 import { showLoginPage } from "../views/login.js";
 import { showRegisterPage } from "../views/register.js";
+import { showView } from "../views/dom.js"
 
 const links = {
   homeLink: "home",
@@ -23,5 +24,26 @@ const views = {
   login: showLoginPage,
   register: showRegisterPage,
   create: showCreatePage,
-  details: showDetailsPage
+  details: showDetailsPage,
 };
+const nav = document.querySelector("nav");
+nav.addEventListener("click", onNavigate);
+
+const ctx = {
+  goTo,
+  showView,
+};
+
+function onNavigate(ev) {
+  const name = links[ev.target.id];
+  if (name) {
+    ev.preventDefault();
+    goTo(name);
+  }
+}
+function goTo(name, ...params) {
+  const view = views[name];
+  if (typeof view == "function") {
+    view(ctx, ...params);
+  }
+}

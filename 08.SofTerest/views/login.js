@@ -5,6 +5,6 @@ const section = document.getElementById('loginPage');
 section.remove();
 
 export function showLoginPage(ctx){
-    ctx.showSection(section);
+    ctx.showView(section);
     
 }

@@ -5,6 +5,6 @@ const section = document.getElementById('registerPage');
 section.remove();
 
 export function showRegisterPage(ctx){
-    ctx.showSection(section);
+    ctx.showView(section);
     
 }
