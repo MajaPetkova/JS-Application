@@ -13,10 +13,17 @@ export function showCatalogPage(ctxTarget) {
 }
 async function loadIdeas() {
   const ideas = await getAllIdeas();
-  const fragment = document.createDocumentFragment();
-  ideas.map(createIdeaCard).forEach((i) => fragment.appendChild(i));
-  //   console.log(ideas[1])
-  section.replaceChildren(fragment);
+
+  if(ideas.length ==0 ){
+    section.replaceChildren(element('h1', {}, 'No ideas yet! Be the first one :)'))
+  }
+  else{
+    const fragment = document.createDocumentFragment();
+    ideas.map(createIdeaCard).forEach((i) => fragment.appendChild(i));
+    //   console.log(ideas[1])
+    section.replaceChildren(fragment);
+
+  }
 }
 
 function createIdeaCard(idea) {
