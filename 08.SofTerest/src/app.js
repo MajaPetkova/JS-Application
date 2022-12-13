@@ -33,6 +33,9 @@ const ctx = {
   goTo,
   showView,
 };
+//Start application in home view
+goTo('home');
+
 
 function onNavigate(ev) {
   const name = links[ev.target.id];
