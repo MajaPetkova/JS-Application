@@ -8,6 +8,7 @@ import { showHomePage } from "../views/home.js";
 import { showLoginPage } from "../views/login.js";
 import { showRegisterPage } from "../views/register.js";
 import { showView } from "../views/dom.js";
+import { logout } from "./api/data.js";
 
 const links = {
   homeLink: "home",
@@ -28,6 +29,14 @@ const views = {
 };
 const nav = document.querySelector("nav");
 nav.addEventListener("click", onNavigate);
+
+document.getElementById('logoutBtn').addEventListener('click', onLogout)
+async function onLogout(ev){
+  ev.preventDefault();
+  await logout();
+  updateUserNav()
+  goTo('home');
+}
 
 const ctx = {
   goTo,

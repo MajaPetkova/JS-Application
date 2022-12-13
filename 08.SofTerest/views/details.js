@@ -27,13 +27,18 @@ function createDiv(idea) {
     element("p", { className: "infoType" }, "Description:"),
     element("p", { className: "idea-description" }, idea.description)
   ));
-  fragment.appendChild(
-    element(
-      "div",
-      { className: "text-center" },
-      element("a", { className: "btn detb", href: "" }, "Delete")
-    )
-  );
+
+  const userData= JSON.parse(sessionStorage.getItem('userData'));
+  if(userData && userData.id ==idea._ownerId ){
+
+    fragment.appendChild(
+      element(
+        "div",
+        { className: "text-center" },
+        element("a", { className: "btn detb", href: "" }, "Delete")
+      )
+    );
+  }
 
   return fragment;
 }
