@@ -1,0 +1,14 @@
+body{
+    width: 980px;
+    margin: auto;
+    box-sizing: border-box;
+    font-size: 24px;
+}
+article{
+    margin:32px 0;
+    box-shadow: 5px 5px 5px 5px #999;
+    padding: 32px;
+}
+article footer{
+    color: grey;
+}
