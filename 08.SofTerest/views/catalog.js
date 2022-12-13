@@ -3,20 +3,23 @@ import { element } from "./dom.js";
 
 const section = document.getElementById("dashboard-holder");
 section.remove();
+section.addEventListener("click", onDetails);
+let ctx = null;
 
-export function showCatalogPage(ctx) {
+export function showCatalogPage(ctxTarget) {
+   ctx = ctxTarget;
   ctx.showView(section);
   loadIdeas();
 }
 async function loadIdeas() {
   const ideas = await getAllIdeas();
   const fragment = document.createDocumentFragment();
-    ideas.map(createIdeaCard).forEach(i => fragment.appendChild(i))
-//   console.log(ideas[1])
+  ideas.map(createIdeaCard).forEach((i) => fragment.appendChild(i));
+  //   console.log(ideas[1])
   section.replaceChildren(fragment);
 }
 
- function createIdeaCard(idea) {
+function createIdeaCard(idea) {
   const e = element("div", {
     className: "card overflow-hidden current-card details",
   });
@@ -30,6 +33,14 @@ async function loadIdeas() {
         <img class="card-image" src="${idea.img}" alt="Card image cap">
         <a data-id="${idea._id}" class="btn" href="">Details</a>
         </div>`;
-    
+
   return e;
+}
+
+function onDetails(ev) {
+  if (ev.target.tagName == "A") {
+    const id = ev.target.dataset.id;
+    ev.preventDefault();
+    ctx.goTo("details", id);
+  }
 }
