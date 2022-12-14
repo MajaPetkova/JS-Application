@@ -12,3 +12,12 @@ article{
 article footer{
     color: grey;
 }
+main{
+    margin-left: 30px;
+}
+#renderBtn, 
+#changeBtn{
+    border-radius: 6px;
+    padding: 8px;
+    border: green solid 2px;
+}
