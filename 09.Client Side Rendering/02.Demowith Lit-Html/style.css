@@ -21,3 +21,15 @@ main{
     padding: 8px;
     border: green solid 2px;
 }
+.blue{
+    background-color: rgb(135, 135, 231);
+}
+.lightblue{
+    background-color:lightblue;
+}
+.purple{
+    background-color: lightgreen;
+}
+.salmon{
+    background-color: salmon;
+}

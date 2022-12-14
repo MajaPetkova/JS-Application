@@ -2,21 +2,25 @@
     {
         "title":"First Article",
         "content":"Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni quaerat vitae harum iusto dignissimos molestiae.",
-        "author":"John Smith"
+        "author":"John Smith",
+        "color": "blue"
     },
     {
         "title":"Second Article",
         "content":" Quae id eos doloribus quia perspiciatis quo unde aut magnam doloremque quaerat. Architecto modi voluptatum odit!  Dolores, possimus! Sunt autem qui vel, eaque corporis sit deleniti corrupti!",
-        "author":"Nick Carter"
+        "author":"Nick Carter",
+        "color": "lightblue"
     },
     {
         "title":"Third Article",
         "content":"Architecto modi voluptatum odit! Laudantium modi ducimus soluta dolores animi quaerat dolor voluptates recusandae excepturi. Dolores, possimus! Sunt autem qui vel, eaque corporis sit deleniti corrupti!",
-        "author":"Peter Johnson"
+        "author":"Peter Johnson",
+        "color": "purple"
     },
     {
         "title":"Forth Article",
         "content":"Debitis, possimus incidunt sit officiis molestias minus. Accusamus repudiandae vitae minima repellendus nisi nobis aperiam debitis vel nihil",
-        "author":"Maria Jameson"  
+        "author":"Maria Jameson"  ,
+        "color": "salmon"
     }
 ]
