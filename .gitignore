@@ -1,3 +1,4 @@
 
 08.SofTerest/node_modules/.bin/_mocha
 *.map
+*.json
