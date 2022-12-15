@@ -1,23 +1,8 @@
-import { html, render } from "https://unpkg.com/lit-html?module";
+import { render } from "https://unpkg.com/lit-html?module";
+import articleTemplate from "./templates/article.js";
 
-const articleTemplate = (onSubmit, data) => html`<article>
-  <input type="text" ?disabled=${data.disabled} .value="${data.color}" />
-  <h3>${data.title}</h3>
-  <div class=${data.color}>
-    <p>${data.content}</p>
-  </div>
-  <footer>Author: ${data.author}</footer>
-  <div class="comments">
-    <form @submit=${onSubmit}>
-      <textarea name="comment"></textarea>
-      <button>Submit comment</button>
-    </form>
 
-    <ul>
-      ${data.comments.map(c => html`<li>${c.content}</li>`)}
-   </ul>
-  </div>
-</article>`;
+
 start();
 
 async function start() {
@@ -41,6 +26,8 @@ async function start() {
     const formData = new FormData(event.target);
     const content = formData.get("comment");
     article.comments.push({ content });
+    onRender();
+    event.target.reset()
     // console.log(content);
   }
 
