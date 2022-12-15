@@ -38,6 +38,8 @@ async function start() {
       content:
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni quaerat vitae harum iusto dignissimos molestiae.",
       author: "John Smith",
+      comments: [],
+      isOwner : true
     });
     onRender();
   }
