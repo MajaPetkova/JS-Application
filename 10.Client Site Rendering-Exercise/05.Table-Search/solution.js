@@ -1,8 +1,17 @@
-function solve() {
-   document.querySelector('#searchBtn').addEventListener('click', onClick);
+// start:
+// fetch and parse data
+// add event Listeners
+// call update
 
-   function onClick() {
-      //   TODO:
+// update:
+// render template
 
-   }
-}
+// onSearch:
+// read input value
+// compare input with all data fields
+// mark matching items
+// call update
+
+// template:
+// display item data
+// highlight item based on match
