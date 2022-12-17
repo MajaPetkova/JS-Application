@@ -44,6 +44,6 @@ async function addItem(ev){
         body: JSON.stringify({text})
     });
     if(res.ok ==true){
-       getData() 
+        getData()
     }
 }
