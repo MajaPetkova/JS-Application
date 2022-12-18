@@ -10,11 +10,15 @@ import { render } from "./utility.js";
 const root = document.body;
 
 const ctx ={
-render: (template) => render(template, root)
+update
 }
 
-ctx.render([
-    showCatalog(ctx),
-    showUpdate(ctx),
-    showCreate(ctx)
-])
+update();
+
+function update(){
+    render([
+        showCatalog(ctx),
+        showUpdate(ctx),
+        showCreate(ctx)
+    ], root)
+}
