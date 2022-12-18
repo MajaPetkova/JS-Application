@@ -14,12 +14,11 @@ const createTemplate = (onSuccess) => html`
 
 
 export function showCreate(ctx) {
-  if(ctx.book != undefined){
-    return updateTemplate(ctx.book, ctx.update)
+  if(ctx.book == undefined){
+    return createTemplate(ctx.update)
   }else{
     return null
   }
-  return createTemplate(ctx.update);
 }
 
 async function onSubmit(ev, onSuccess) {

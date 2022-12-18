@@ -35,15 +35,15 @@ export async function getAllBooks() {
   return request("/books");
 }
 export async function getBookById(id) {
-  return request("/books" + id);
+  return request("/books/" + id);
 }
 export async function createBook(book) {
   return request("/books", "post", book);
 }
 
 export async function updateBook(id, book) {
-  return request("/books" + id, "put", book);
+  return request("/books/" + id, "put", book);
 }
 export async function deleteBook(id) {
-  return request("/books" + id, "delete");
+  return request("/books/" + id, "delete");
 }

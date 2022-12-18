@@ -2,8 +2,8 @@
 //update module
 // control edit form
 
-const updateTemplate =(book, onSuccess)=> html `
-<form @submit=${ev=> onSubmit(ev, onSuccess)} id="edit-form">
+const updateTemplate =(book, ctx)=> html `
+<form @submit=${ev=> onSubmit(ev, ctx)} id="edit-form">
 <input  type="hidden" name="id" .value=${book._id}>
 <h3>Edit book</h3>
 <label>TITLE</label>
@@ -17,10 +17,10 @@ export function showUpdate(ctx){
   if(ctx.book == undefined){
     return null
   }else{
-    return updateTemplate(ctx.book, ctx.update)
+    return updateTemplate(ctx.book, ctx)
   }
 }
-async function onSubmit(ev, onSuccess) {
+async function onSubmit(ev, ctx) {
   ev.preventDefault();
   const formData = new FormData(ev.target);
  
@@ -30,5 +30,7 @@ async function onSubmit(ev, onSuccess) {
 
   await updateBook(id, { title, author });
   ev.target.reset();
-  onSuccess()
+  delete ctx.book;
+  ctx.update();
+ 
 }

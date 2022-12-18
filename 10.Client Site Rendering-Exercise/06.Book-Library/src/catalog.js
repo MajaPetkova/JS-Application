@@ -1,38 +1,55 @@
-import { getAllBooks, html, until } from "./utility.js"
+import { deleteBook, getAllBooks, html, until } from "./utility.js";
 
 //list module:
 // display list of books
 // control books(edit, delete)
 
-const catalogTemplate= (booksPromise)=> html `<table>
-<thead>
+const catalogTemplate = (booksPromise) => html`<table>
+  <thead>
     <tr>
-        <th>Title</th>
-        <th>Author</th>
-        <th>Action</th>
+      <th>Title</th>
+      <th>Author</th>
+      <th>Action</th>
     </tr>
-</thead>
-<tbody>
-    ${until(booksPromise, html `<tr><td colSpan= "3">Loading&hellip;</td></tr>`)}
+  </thead>
+  <tbody>
+    ${until(
+      booksPromise,
+      html`<tr>
+        <td colspan="3">Loading&hellip;</td>
+      </tr>`
+    )}
+  </tbody>
+</table>`;
 
-</tbody>
-</table>`
+const bookRow = (book, onEdit, onDelete) => html`<tr>
+  <td>${book.title}</td>
+  <td>${book.author}</td>
+  <td>
+    <button @click=${onEdit}>Edit</button>
+    <button @click=${onDelete}>Delete</button>
+  </td>
+</tr>`;
 
-const bookRow= (book)=> html`<tr>
-<td>${book.title}</td>
-<td>${book.author}</td>
-<td>
-    <button>Edit</button>
-    <button>Delete</button>
-</td>
-</tr>` 
-
-
-export function showCatalog(ctx){
-   return catalogTemplate(loadBooks())
+export function showCatalog(ctx) {
+  return catalogTemplate(loadBooks(ctx));
 }
 
-async function loadBooks(){
-   const books = await getAllBooks();
-   return Object.values(books).map(bookRow)
+async function loadBooks(ctx) {
+  const data = await getAllBooks();
+
+  const books = Object.entries(data).map(([k, v]) => Object.assign(v, {_id: k}));
+
+  return Object.values(books).map((book) =>
+    bookRow(book, toggleEditor.bind(null, book, ctx), onDelete.bind(null, book._id, ctx)));
+}
+
+function toggleEditor(book, ctx) {
+  ctx.book = book;
+  ctx.update();
+}
+
+async function onDelete(id, ctx){
+await deleteBook(id);
+ctx.update();
 }
