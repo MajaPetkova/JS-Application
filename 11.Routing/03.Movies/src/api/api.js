@@ -1,3 +1,5 @@
+import { clearUserData, getUserData, setUserData } from "../util.js";
+
 const host = "http://localhost:3030";
 
 async function request(url, options) {
@@ -6,7 +8,7 @@ async function request(url, options) {
 
     if (response.ok != true) {
       if (response.status == 403) {
-        sessionStorage.removeItem("userData");
+        clearUserData();
       }
       const error = await response.json();
       throw new Error(error.message);
@@ -32,7 +34,7 @@ function createOptions(method = "GET", data) {
     options.headers["Content-Type"] = "application/json";
     options.body = JSON.stringify(data);
   }
-  const userData = JSON.parse(sessionStorage.getItem("userData"));
+  const userData = getUserData();
   if (userData != null) {
     options.headers["X-Authorization"] = userData.token;
   }
@@ -59,20 +61,20 @@ export async function login(email, password) {
     id: result._id,
     token: result.accessToken,
   };
-  sessionStorage.setItem("userData", JSON.stringify(userData));
+  setUserData(userData);
 }
 
 export async function register(email, password) {
-    const result = await post("/users/register", { email, password });
-    const userData = {
-      email: result.email,
-      id: result._id,
-      token: result.accessToken,
-    };
-    sessionStorage.setItem("userData", JSON.stringify(userData));
-  }
+  const result = await post("/users/register", { email, password });
+  const userData = {
+    email: result.email,
+    id: result._id,
+    token: result.accessToken,
+  };
+  setUserData(userData)
+}
 
-  export async function logout(){
-    await get('/users/logout');
-    sessionStorage.removeItem('userData')
-  }
+export async function logout() {
+  await get("/users/logout");
+ clearUserData();
+}
