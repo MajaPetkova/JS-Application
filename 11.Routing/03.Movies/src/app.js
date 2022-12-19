@@ -23,6 +23,7 @@ page.start();
 
 async function decorateContext (ctx, next){
     ctx.render=(template)=> render(template, root);
+    ctx.updateUserNav = updateUserNav;
     next();
 }
 function updateUserNav(){
