@@ -39,9 +39,9 @@
         box-shadow: 0 5px 10px #cccccc;
     }
     
-    #views {
+    /* #views {
         display: none;
-    }
+    } */
     .user, .guest{
         display: none;
     }

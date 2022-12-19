@@ -17,7 +17,7 @@ const catalogTemplate = () => html` <section id="home-page">
   <h1 class="text-center">Movies</h1>
 
   <section id="add-movie-button">
-    <a id="createLink" href="#" class="btn btn-warning ">Add Movie</a>
+    <a id="createLink" href="/create" class="btn btn-warning ">Add Movie</a>
   </section>
 
   <section id="movie">
