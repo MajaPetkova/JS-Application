@@ -15,7 +15,8 @@ page('/create', createPage);
 page('/login', loginPage);
 page('/register', registerPage);
 page('/edit', editPage);
-page('/details', detailsPage);
+page('/details/:id', detailsPage);
+page('/', '/home')
 
 updateUserNav()
 page.start();
