@@ -1,6 +1,7 @@
-import { html } from "../lib.js";
+import { getAllMovies } from "../api/data.js";
+import { html ,until } from "../lib.js";
 
-const catalogTemplate = () => html` <section id="home-page">
+const catalogTemplate = (data) => html` <section id="home-page">
   <div
     class="jumbotron jumbotron-fluid text-light" style="background-color: #343a40;">
     <img
@@ -24,13 +25,39 @@ const catalogTemplate = () => html` <section id="home-page">
     <div class=" mt-3 ">
       <div class="row d-flex d-wrap">
         <div class="card-deck d-flex justify-content-center">
-          <!-- Movie Catalog -->
+     ${until(data, html `<p>Loading &hellip;</p>`)}
         </div>
       </div>
     </div>
   </section>
 </section>`;
 
+const movieCard = (movie) => html`
+ <div class="card mb-4">
+   <img
+     class="card-img-top"
+     src=${movie.img}
+     alt="Card image cap"
+     width="400"
+   />
+   <div class="card-body">
+     <h4 class="card-title">${movie.title}</h4>
+   </div>
+   <div class="card-footer">
+    <a href=${`/details/${movie._id}`}>
+      <button type="button" class="btn btn-info">
+        Details
+      </button>
+    </a>
+  </div>
+  </div>`
+
 export function catalogPage(ctx){
-    ctx.render(catalogTemplate())
+    ctx.render(catalogTemplate(loadMovies()))
+}
+
+async function loadMovies(){
+   const movies = await getAllMovies();
+  
+   return movies.map(movieCard)
 }

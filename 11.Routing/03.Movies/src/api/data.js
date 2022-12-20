@@ -5,3 +5,13 @@ export const register = api.register;
 export const logout = api.logout;
 
 
+const endpoints={
+    allMovies : "/data/movies"
+}
+
+
+export async function getAllMovies(){
+return api.get(endpoints.allMovies)
+}
+
+
