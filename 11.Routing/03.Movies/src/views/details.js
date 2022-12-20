@@ -1,5 +1,6 @@
 import { html, until } from "../lib.js";
 import { getMovieById } from "../api/data.js";
+import { getUserData } from "../util.js";
 
 const detailsTemplate = (moviePromise) => html`<section id="movie-details">
   ${until (moviePromise, html `<p>Loading &hellip;</p>`)}
@@ -19,11 +20,11 @@ const movieTemplate= (movie) => html `<div class="container">
   <div class="col-md-4 text-center">
     <h3 class="my-3 ">Movie Description</h3>
     <p>
-  ${movie.description}
-    </p>
-    <a class="btn btn-danger" href="#">Delete</a>
-    <a class="btn btn-warning" href="/edit">Edit</a>
-    <a class="btn btn-primary" href="/like">Like</a>
+  ${movie.description} </p>
+  ${movie.isOwner 
+  ? html `  <a class="btn btn-danger" href="#">Delete</a>
+    <a class="btn btn-warning" href="/edit">Edit</a>` 
+  : html `<a class="btn btn-primary" href="/like">Like</a>`}
     <span class="enrolled-span">Liked 1</span>
   </div>
 </div>
@@ -35,7 +36,10 @@ export function detailsPage(ctx) {
 }
 async function loadMovie(id) {
   const movie = await getMovieById(id);
-
+  const userData=getUserData() ;
+  if(userData && userData.id == movie._id){
+    movie.isOwner = true;
+  }
   return movieTemplate(movie);
 }
 

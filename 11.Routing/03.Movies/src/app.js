@@ -14,8 +14,8 @@ page('/home', catalogPage);
 page('/create', createPage);
 page('/login', loginPage);
 page('/register', registerPage);
-page('/edit', editPage);
-page('/details/:id', detailsPage);
+page('/edit/:id', editPage);
+page('/details/:id',detailsPage);
 page('/', '/home')
 
 updateUserNav()
