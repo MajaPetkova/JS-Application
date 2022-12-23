@@ -6,8 +6,8 @@ import { editPage } from "./views/edit.js";
 import { registerPage } from "./views/register.js";
 import { detailsPage } from "./views/details.js";
 
-import * as api from "./api/data.js";
-window.api = api;
+// import * as api from "./api/data.js";
+// window.api = api;
 const root = document.querySelector("div.container");
 
 page(decorateContext);
