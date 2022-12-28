@@ -214,10 +214,10 @@ img {
     border-left: 2px solid red;
 }
 
-/* #user,
+#user,
 #guest {
     display: none
-} */
+}
 
 .error {
     color: red;
