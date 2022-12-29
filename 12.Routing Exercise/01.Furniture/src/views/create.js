@@ -57,9 +57,9 @@ export function createPage(ctx) {
     ev.preventDefault();
 
     const formData = [...new FormData(ev.target).entries()];
-    const data = formData.reduce((a, [k, v]) => Object.assign(a, { [k]: v }),{});
+    const data = formData.reduce((a, [k, v]) => Object.assign(a, { [k]: v.trim() }),{});
 
-    const missing = formData.filter(([k, v]) => k != "material" && v == "");
+    const missing = formData.filter(([k, v]) => k != "material" && v.trim() == "");
     try{
     if (missing.length > 0) {
         const errors= missing.reduce((a, [k]) =>Object.assign(a, {[k]: true}), {})
