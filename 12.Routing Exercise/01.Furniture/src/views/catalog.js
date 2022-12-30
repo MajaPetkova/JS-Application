@@ -13,15 +13,19 @@ const catalogTemplate = (dataPromise, userPage, page) => html` <div
             <p>Select furniture from the catalog to view details.</p>`}
     </div>
   </div>
-  <div class="row space-top">
-    <a class="page-index btn btn-info" href=${`?page=${page - 1}`}>&lt; Prev</a>
-    <a class="page-index btn btn-info" href=${`?page=${page + 1}`}>Next &gt;</a>
-    <!-- <a class="page-index btn btn-info" href="?page=2">2</a>
-    <a class="page-index btn btn-info" href="?page=3">3</a> -->
-  </div>
-  <div class="row space-top">
+  
+  <!-- <a class="page-index btn btn-info" href="?page=2">2</a>
+  <a class="page-index btn btn-info" href="?page=3">3</a> -->
+  <div class="space-top">
     ${until(dataPromise, html`<p>Loading &hellip;</p>`)}
   </div>`;
+
+
+const pagerTemplate= (page, pages) => html `
+<div class="space-top">
+${page > 1 ? html `<a class="page-index btn btn-info" href=${`?page=${page - 1}`}>&lt; Prev</a>` : null }
+${page < pages ?html `<a class="page-index btn btn-info" href=${`?page=${page + 1}`}>Next &gt;</a>` : null}
+</div>`
 
 const itemTemplate = (item) => html`<div class="col-md-4">
   <div class="card text-white bg-primary">
@@ -53,5 +57,8 @@ async function loadItems(userPage, page) {
   } else {
     items = await getAll(page);
   }
-  return items.map(itemTemplate);
+  return[
+    pagerTemplate(page, items.pages),
+    ...items.data.map(itemTemplate)
+  ]
 }

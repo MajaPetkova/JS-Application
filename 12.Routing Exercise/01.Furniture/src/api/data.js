@@ -8,6 +8,7 @@ const pageSize = 4;
 
 const endpoints = {
   all: "/data/catalog?pageSize=4&offset=",
+  count: "/data/catalog?count",
   byId: "/data/catalog/",
   myItems: (userId) => `/data/catalog?where=_ownerId%3D%22${userId}%22`,
   create: "/data/catalog",
@@ -16,7 +17,14 @@ const endpoints = {
 };
 
 export async function getAll(page) {
-  return api.get(endpoints.all + (page - 1) * pageSize);
+  const [data, count]= await Promise.all([
+    api.get(endpoints.all + (page - 1) * pageSize),
+    api.get(endpoints.count)
+  ]);
+  return {
+    data, 
+    pages: Math.ceil(count / pageSize)
+  }
 }
 export async function getById(id) {
   return api.get(endpoints.byId + id);
