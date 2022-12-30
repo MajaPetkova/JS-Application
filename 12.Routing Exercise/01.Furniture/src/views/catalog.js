@@ -2,15 +2,22 @@ import { getAll, getMyItems } from "../api/data.js";
 import { html, until } from "../lib.js";
 import { getUserData } from "../util.js";
 
-const catalogTemplate = (dataPromise, userPage) => html` <div class="row space-top">
+const catalogTemplate = (dataPromise, userPage, page) => html` <div
+    class="row space-top"
+  >
     <div class="col-md-12">
-        ${userPage 
-                ?  html`<h1>My Furniture</h1>
-                <p>This is a list of your publications.</p>` 
-                : html ` <h1>Welcome to Furniture System</h1>
-      <p>Select furniture from the catalog to view details.</p>`}
-     
+      ${userPage
+        ? html`<h1>My Furniture</h1>
+            <p>This is a list of your publications.</p>`
+        : html` <h1>Welcome to Furniture System</h1>
+            <p>Select furniture from the catalog to view details.</p>`}
     </div>
+  </div>
+  <div class="row space-top">
+    <a class="page-index btn btn-info" href=${`?page=${page - 1}`}>&lt; Prev</a>
+    <a class="page-index btn btn-info" href=${`?page=${page + 1}`}>Next &gt;</a>
+    <!-- <a class="page-index btn btn-info" href="?page=2">2</a>
+    <a class="page-index btn btn-info" href="?page=3">3</a> -->
   </div>
   <div class="row space-top">
     ${until(dataPromise, html`<p>Loading &hellip;</p>`)}
@@ -32,16 +39,19 @@ const itemTemplate = (item) => html`<div class="col-md-4">
 </div> `;
 
 export function catalogPage(ctx) {
+  const page = Number(ctx.querystring.split("=")[1] || 1);
+  console.log(page);
+
   const userPage = ctx.pathname == "/my-furniture";
-  ctx.render(catalogTemplate(loadItems(userPage), userPage));
+  ctx.render(catalogTemplate(loadItems(userPage, page), userPage, page));
 }
-async function loadItems(userPage) {
+async function loadItems(userPage, page) {
   let items = [];
   if (userPage) {
     const userId = getUserData().id;
     items = await getMyItems(userId);
   } else {
-    items = await getAll();
+    items = await getAll(page);
   }
   return items.map(itemTemplate);
 }
