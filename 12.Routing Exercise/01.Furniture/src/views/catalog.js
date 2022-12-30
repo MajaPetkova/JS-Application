@@ -1,8 +1,8 @@
 import { getAll, getMyItems } from "../api/data.js";
 import { html, until } from "../lib.js";
-import { getUserData } from "../util.js";
+import { getUserData, parseQueryString } from "../util.js";
 
-const catalogTemplate = (dataPromise, userPage, page) => html` <div
+const catalogTemplate = (dataPromise, userPage, onSearch, search) => html` <div
     class="row space-top"
   >
     <div class="col-md-12">
@@ -11,6 +11,12 @@ const catalogTemplate = (dataPromise, userPage, page) => html` <div
             <p>This is a list of your publications.</p>`
         : html` <h1>Welcome to Furniture System</h1>
             <p>Select furniture from the catalog to view details.</p>`}
+    </div>
+    <div class="col-md-12">
+      <form @submit=${onSearch}>
+        <input type="text" name="search" .value=${search}>
+        <input type="submit" value="Search">
+      </form>
     </div>
   </div>
   
@@ -43,19 +49,31 @@ const itemTemplate = (item) => html`<div class="col-md-4">
 </div> `;
 
 export function catalogPage(ctx) {
-  const page = Number(ctx.querystring.split("=")[1] || 1);
-  console.log(page);
+ const query=parseQueryString(ctx.querystring);
+ const page=Number( query.page || 1);
+const search= query.search || "";
+  // const page = Number(ctx.querystring.split("=")[1] || 1);
+  // console.log(page);
 
   const userPage = ctx.pathname == "/my-furniture";
-  ctx.render(catalogTemplate(loadItems(userPage, page), userPage, page));
+  ctx.render(catalogTemplate(loadItems(userPage, page, search), userPage, onSearch, search));
+
+  function onSearch(ev){
+   ev.preventDefault();
+
+   const formData= new FormData(ev.target);
+   const searchParam= formData.get("search").trim();
+    
+   ctx.page.redirect(`?search=${searchParam}`)
+  }
 }
-async function loadItems(userPage, page) {
+async function loadItems(userPage, page, search) {
   let items = [];
   if (userPage) {
     const userId = getUserData().id;
     items = await getMyItems(userId);
   } else {
-    items = await getAll(page);
+    items = await getAll(page, search);
   }
   return[
     pagerTemplate(page, items.pages),

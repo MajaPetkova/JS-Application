@@ -16,9 +16,14 @@ const endpoints = {
   delete: "/data/catalog/",
 };
 
-export async function getAll(page) {
+export async function getAll(page, search) {
+  let url=endpoints.all + (page - 1) * pageSize;
+
+  if(search){
+    url += "&where=" + encodeURIComponent(`make LIKE "${search}"`)
+  }
   const [data, count]= await Promise.all([
-    api.get(endpoints.all + (page - 1) * pageSize),
+    api.get(url),
     api.get(endpoints.count)
   ]);
   return {
