@@ -64,7 +64,11 @@ const search= query.search || "";
    const formData= new FormData(ev.target);
    const searchParam= formData.get("search").trim();
     
-   ctx.page.redirect(`?search=${searchParam}`)
+   if(searchParam){
+     ctx.page.redirect(`?search=${searchParam}`)
+   }else{
+    ctx.page.redirect('/')
+   }
   }
 }
 async function loadItems(userPage, page, search) {
