@@ -226,3 +226,13 @@ img {
 .page-index{
 margin:0px 8px;
 }
+
+#notification{
+    position: fixed;
+    top:100px;
+    right: 30px;
+    background-color: rgb(249, 87, 106);
+    color: rgb(17, 16, 16);
+    padding: 8px 16px;
+    cursor: pointer;
+}
