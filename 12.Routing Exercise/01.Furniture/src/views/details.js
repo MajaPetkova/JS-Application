@@ -1,4 +1,5 @@
 import { deleteItem, getById } from "../api/data.js";
+import { showModal } from "../common/modal.js";
 import { html, until } from "../lib.js";
 import { getUserData } from "../util.js";
 
@@ -38,12 +39,19 @@ export function detailsPage (ctx) {
     ctx.render(detailsTemplate(loadItem(ctx.params.id, onDelete)));
 
     async function onDelete(){
-     const choice= confirm("Are you sure you want to delete this item?");
+    //  const choice= confirm("Are you sure you want to delete this item?");
 
-     if(choice){
-        await deleteItem(ctx.params.id);
-        ctx.page.redirect('/')
-     }
+    //
+
+    showModal("Are you sure you want to delete this item?" , onSelect );
+
+   async function onSelect(choice){
+     
+      if(choice){
+            await deleteItem(ctx.params.id);
+            ctx.page.redirect('/')
+         }
+    }
     }
 }
 

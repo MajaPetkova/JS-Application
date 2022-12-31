@@ -6,7 +6,7 @@ closeBtn.innerHTML= "&#10006;"
 element.appendChild(msg);
 element.appendChild(closeBtn);
 
-element.addEventListener("click", clear);
+closeBtn.addEventListener("click", clear);
 
 export function notify(message){
 msg.textContent = message;

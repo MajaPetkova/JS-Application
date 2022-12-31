@@ -11,6 +11,7 @@ const endpoints = {
   count: "/data/catalog?count",
   byId: "/data/catalog/",
   myItems: (userId) => `/data/catalog?where=_ownerId%3D%22${userId}%22`,
+  countMyItems: (userId) => `/data/catalog?where=_ownerId%3D%22${userId}%22&count`,
   create: "/data/catalog",
   edit: "/data/catalog/",
   delete: "/data/catalog/",
@@ -35,7 +36,14 @@ export async function getById(id) {
   return api.get(endpoints.byId + id);
 }
 export async function getMyItems(userId) {
-  return api.get(endpoints.myItems(userId));
+  const [data, count]= await Promise.all([
+   api.get(endpoints.myItems(userId)),
+   api.get(endpoints.countMyItems(userId)),
+  ]);
+  return {
+    data,
+    pages: Math.ceil(count / pageSize)
+  };
 }
 export async function createItem(data) {
   return api.post(endpoints.create, data);
