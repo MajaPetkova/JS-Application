@@ -32,7 +32,6 @@ ${isOwner ? html`<div>
     <a href=${`edit/${item._id}`} class="btn btn-info">Edit</a>
     <a @click=${onDelete} href="javascript:void(0)" class="btn btn-red">Delete</a>
 </div>` : null}
-
 </div>`;
 
 export function detailsPage (ctx) {
@@ -40,20 +39,15 @@ export function detailsPage (ctx) {
 
     async function onDelete(){
     //  const choice= confirm("Are you sure you want to delete this item?");
-
-    //
-
-    showModal("Are you sure you want to delete this item?" , onSelect );
-
-   async function onSelect(choice){
-     
+    const choice= await showModal("Are you sure you want to delete this item?" );
       if(choice){
             await deleteItem(ctx.params.id);
             ctx.page.redirect('/')
          }
-    }
+
     }
 }
+
 
 async function loadItem(id, onDelete){
  const item= await getById(id);
