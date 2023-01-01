@@ -1,7 +1,7 @@
 import { register } from "../api/data.js";
 import { html } from "../lib.js";
 
-const registerTemplate = (onSubmit, errorMsg, errors) => html` <div
+const registerTemplate = (onSubmit, errorMsg, errors, onReveal, revealPassword) => html` <div
     class="row space-top"
   >
     <div class="col-md-12">
@@ -24,9 +24,10 @@ const registerTemplate = (onSubmit, errorMsg, errors) => html` <div
           <input
          class= ${"form-control" + (errors.password ? " is-invalid" : "" )}
             id="password"
-            type="password"
+            type=${revealPassword ? "text" : "password"}
             name="password"
           />
+        <label><input type="checkbox" @change=${onReveal}>Reveal</label>
         </div>
         <div class="form-group">
           <label class="form-control-label" for="rePass">Repeat</label>
@@ -45,8 +46,13 @@ const registerTemplate = (onSubmit, errorMsg, errors) => html` <div
 export function registerPage(ctx) {
   update(null, {});
 
-  function update(errorMsg, errors) {
-    ctx.render(registerTemplate(onSubmit, errorMsg, errors));
+  function update(errorMsg, errors, revealPassword) {
+    ctx.render(registerTemplate(onSubmit, errorMsg, errors, onReveal, revealPassword));
+  }
+
+  function onReveal(ev){
+    ev.preventDefault();
+    update("", {}, ev.target.checked)
   }
 
   async function onSubmit(ev) {

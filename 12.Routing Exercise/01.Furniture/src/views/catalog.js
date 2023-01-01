@@ -23,7 +23,7 @@ const catalogTemplate = (dataPromise, userPage, onSearch, search) => html` <div
   <!-- <a class="page-index btn btn-info" href="?page=2">2</a>
   <a class="page-index btn btn-info" href="?page=3">3</a> -->
   <div class="space-top">
-    ${until(dataPromise, html`<p>Loading &hellip;</p>`)}
+    ${until(dataPromise, html`<div class="lds-ring"><div></div><div></div><div></div><div></div></div>`)}
   </div>`;
 
 
