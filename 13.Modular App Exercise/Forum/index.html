@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./css/site.css" />
+    <script type="module" src="./src/app.js"></script>
     <title>Forum</title>
   </head>
   <body>
@@ -54,7 +55,8 @@
 
       <!-- Login Page -->
       <section>
-        <div class="narrow">
+          <div class="narrow">
+            <header> <h2> Login</h2></header>
             <form>
                 <label><span>Email:</span>  <input type="text" name="email"></label>
                 <label><span> Password:</span> <input type="text" name="password"></label>
@@ -64,6 +66,21 @@
             </form>
         </div>
       </section>
+
+      <!-- Register Page -->
+      <section>
+        <div class="narrow">
+          <header> <h2>Register</h2></header>
+          <form>
+              <label><span>Email:</span>  <input type="text" name="email"></label>
+              <label><span> Password:</span> <input type="text" name="password"></label>
+              <label><span> Repeat Pass:</span> <input type="text" name="repass"></label>
+              <div class="center">
+                  <input type="submit" class="action" value="Sign Up">
+              </div>
+          </form>
+      </div>
+    </section>
       <footer>&copy; Petkova M. 2023</footer>
     </div>
   </body>
