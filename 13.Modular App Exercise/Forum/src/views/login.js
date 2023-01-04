@@ -3,10 +3,11 @@ import { html, page } from "../lib.js";
 import { createSubmitHandler } from "../util.js";
 
 
-const loginTemplate = (onSubmit) => html`  <div class="narrow">
+const loginTemplate = (onSubmit, errorMsg, email) => html`  <div class="narrow">
 <header> <h2> Login</h2></header>
 <form @submit=${onSubmit}>
-    <label><span>Email:</span>  <input type="text" name="email"></label>
+${errorMsg ? html`<p class="err-msg">${errorMsg}</p>` : null}
+    <label><span>Email:</span>  <input type="text" name="email" .value=${email}></label>
     <label><span> Password:</span> <input type="text" name="password"></label>
     <div class="center">
         <input type="submit" class="action" value="Sign In">
@@ -15,12 +16,22 @@ const loginTemplate = (onSubmit) => html`  <div class="narrow">
 </div>`;
 
 export function loginPage(ctx) {
-  ctx.render(loginTemplate(createSubmitHandler(onSubmit, "email", "password")));
+  update();
+
+  function update(errorMsg="", email=""){
+    ctx.render(loginTemplate(createSubmitHandler(onSubmit, "email", "password"), errorMsg, email));
+
+  }
 
 
   async function onSubmit(data){
-   await login(data.email, data.password);
-   ctx.updateUserNav();
-   page.redirect("/topics")
+    try{
+      await login(data.email, data.password);
+      ctx.updateUserNav();
+      page.redirect("/topics")
+    }catch(err){
+      const message= err.message || err.error.message;
+      update(message, data.email)
+    }
   }
 }
