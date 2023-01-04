@@ -1,3 +1,4 @@
+import { createTopic } from "../api/data.js";
 import { input } from "../common/input.js";
 import { html, page } from "../lib.js";
 import { createSubmitHandler } from "../util.js";
@@ -25,13 +26,20 @@ export function createPage(ctx) {
 
 
   async function onSubmit(data){
-    // try{
-    //   await login(data.email, data.password);
-    //   ctx.updateUserNav();
-    //   page.redirect("/topics")
-    // }catch(err){
-    //   const message= err.message || err.error.message;
-    //   update(message, data.email)
-    // }
+    try{
+      const missing= Object.entries(data).filter(([k,v])=> v== "" )
+      if(missing.length > 0){
+         const errors= missing.reduce((a, [k])=>Object.assign(a, {[k]:true}) ,{})
+         throw {
+           error : new Error("All fields are required!"),
+           errors
+         }
+      }
+  const result = await createTopic(data)
+      page.redirect("/topic/" + result._id)
+    }catch(err){
+      const message= err.message || err.error.message;
+      update(message, err.errors, data )
+    }
   }
 }

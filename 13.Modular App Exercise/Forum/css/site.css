@@ -56,6 +56,13 @@ label span {
   margin-right: 12px;
   vertical-align: top;
 }
+label input{
+    width:200px
+}
+label textarea{
+    width: 230px;
+    height: 200px;
+}
 .narrow {
   text-align: start;
   width: 450px;
@@ -86,7 +93,8 @@ form {
   cursor: pointer;
   background-color: #b3c100;
 }
-.error input {
+.error input, 
+.error textarea {
   border: 1px solid red;
 }
 .err-msg {
