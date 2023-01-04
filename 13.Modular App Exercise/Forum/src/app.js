@@ -1,6 +1,7 @@
 import { logout } from "./api/data.js";
 import {render, page} from "./lib.js";
 import { getUserData } from "./util.js";
+import { createPage } from "./views/create.js";
 import { homePage } from "./views/home.js";
 import { loginPage } from "./views/login.js";
 import { registerPage } from "./views/register.js";
@@ -15,7 +16,7 @@ page("/", homePage);
 page("/topics", topicsPage);
 page("/login", loginPage);
 page("/register", registerPage);
-page("/create", ()=> console.log("Create Page"));
+page("/create", createPage);
 
 updateUserNav();
 page.start();
