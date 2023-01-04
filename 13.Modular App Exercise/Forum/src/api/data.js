@@ -6,9 +6,10 @@ export const logout = api.logout;
 
 
 const endpoints= {
-topics: "/data/topics",
+topics: "/data/topics?select=_id,title",
 topicCount: "/data/topics?count",
 createTopic: "/data/topics",
+topicById: "/data/topics/"
 }
 export async function getAllTopics() {
   return api.get(endpoints.topics);
@@ -18,4 +19,7 @@ export async function getTopicCount(){
 }
 export async function createTopic(topic){
  return api.post(endpoints.createTopic, topic)
+}
+export async function getTopicById(id){
+    return api.get(endpoints.topicById + id)
 }

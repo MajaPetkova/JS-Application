@@ -123,3 +123,6 @@ form {
 .err-msg {
   color: red;
 }
+.topic-content{
+  padding: 12px 20px;
+}

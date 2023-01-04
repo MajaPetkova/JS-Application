@@ -1,9 +1,10 @@
 import { getAllTopics } from "../api/data.js";
+import { spinner } from "../common/spiner.js";
 import { html, until } from "../lib.js";
 
 const topicsTemplate = (topicsPromise) => html`   <h1>Topics</h1>
 <div>
-  ${until (topicsPromise, html `<p class="spinner">Loading &hellip; </p>`)}
+  ${until (topicsPromise, spinner())}
 </div>`;
 
 const topicPreviewCard =(topic)=> html ` <article class="preview">
