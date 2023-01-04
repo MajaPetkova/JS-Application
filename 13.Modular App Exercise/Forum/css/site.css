@@ -48,20 +48,23 @@ label{
 }
 label span{
     display: inline-block;
-    width: 100px;
+    width: 130px;
+    text-align: left;
+text-align: right;
+margin-right: 12px;
 }
 .narrow{
     text-align: start;
-    width:400px;
+    width:450px;
     box-shadow:  0 0 15px 5px rgba(37, 37, 37, 0.2);
-    margin: 64px auto;
+    margin: 34px auto;
 }
 .narrow header{
     text-align: center;
     margin-bottom: 16px;
 }
 form{
-    padding: 16px 32px;
+    padding: 16px 16px;
 }
 .center{
     margin-top: 15px;
@@ -73,10 +76,16 @@ form{
     border:none;
     border-radius: 4px;
     color: bisque;
-    font-weight: 600;
+    font-weight: 500;
     letter-spacing: 1px;
 }
 .action:hover{
 cursor: pointer;
 background-color: #b3c100;
+}
+.error input{
+    border: 1px solid red;
+}
+.err-msg{
+    color: red;
 }

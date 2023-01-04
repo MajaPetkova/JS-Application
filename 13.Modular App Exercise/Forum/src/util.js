@@ -18,8 +18,8 @@ export function createSubmitHandler(callback, ...fieldNames){
     const result= {};
 
     for (let field of fieldNames){
-        result[field] = formData.get(field)
+        result[field] = formData.get(field).trim();
     }
-    callback(result)
+    callback(result, ev)
  }
 }
