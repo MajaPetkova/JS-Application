@@ -4,6 +4,11 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="script-src 'self' code.jquery.com 'unsafe-inline' ; "
+    />
+
     <link rel="stylesheet" href="./css/site.css" />
     <script type="module" src="./src/app.js"></script>
     <title>Forum</title>
@@ -11,33 +16,31 @@
   <body>
     <div id="container">
       <header>
-        <div> <a href="/"> Forum</a></div>
+        <div><a href="/"> Forum</a></div>
         <nav>
           <!-- <a href="/">Home</a> -->
           <a href="/topics">Topics</a>
-          <a href="/create">New Topic</a>
-          <a href="/login">Login</a>
-          <a href="/register">Register</a>
-          <a href="javascript:void(0)">Logout</a>
+          <div class="user">
+            <a href="/create">New Topic</a>
+            <a id="logoutBtn" href="javascript:void(0)">Logout</a>
+          </div>
+          <div class="guest">
+            <a href="/login">Login</a>
+            <a href="/register">Register</a>
+          </div>
         </nav>
       </header>
       <footer>&copy; Petkova M. 2023</footer>
-  
-      <main>
 
-      </main>
+      <main></main>
 
       <!-- Home Page -->
-  
+
       <!-- Topics Page -->
-    
+
       <!-- Login Page -->
-      <section>
-        
-      </section>
 
       <!-- Register Page -->
-     
-  </div>
+    </div>
   </body>
 </html>

@@ -10,3 +10,16 @@ export function setUserData(data) {
 export function clearUserData() {
     sessionStorage.removeItem('userData')
 }
+
+export function createSubmitHandler(callback, ...fieldNames){
+ return function(ev){
+    ev.preventDefault();
+    const formData = new FormData(ev.target);
+    const result= {};
+
+    for (let field of fieldNames){
+        result[field] = formData.get(field)
+    }
+    callback(result)
+ }
+}

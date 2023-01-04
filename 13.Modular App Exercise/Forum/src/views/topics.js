@@ -17,6 +17,6 @@ export function topicsPage(ctx) {
 
 }
  async function loadTopics(){
-const topics= await getAllTopics();
-return topics.map(topicPreviewCard)
+   const topics= await getAllTopics();
+   return topics.map(topicPreviewCard)
  }

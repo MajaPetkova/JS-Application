@@ -1,8 +1,11 @@
-import { html } from "../lib.js";
+import { login } from "../api/data.js";
+import { html, page } from "../lib.js";
+import { createSubmitHandler } from "../util.js";
 
-const loginTemplate = () => html`  <div class="narrow">
+
+const loginTemplate = (onSubmit) => html`  <div class="narrow">
 <header> <h2> Login</h2></header>
-<form>
+<form @submit=${onSubmit}>
     <label><span>Email:</span>  <input type="text" name="email"></label>
     <label><span> Password:</span> <input type="text" name="password"></label>
     <div class="center">
@@ -12,5 +15,12 @@ const loginTemplate = () => html`  <div class="narrow">
 </div>`;
 
 export function loginPage(ctx) {
-  ctx.render(loginTemplate());
+  ctx.render(loginTemplate(createSubmitHandler(onSubmit, "email", "password")));
+
+
+  async function onSubmit(data){
+   await login(data.email, data.password);
+   ctx.updateUserNav();
+   page.redirect("/topics")
+  }
 }

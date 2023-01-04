@@ -75,6 +75,6 @@ export async function register(email, password) {
     setUserData(userData);
 }
 export async function logout() {
-    await get('/users/logout');
     clearUserData();
+    await get('/users/logout');
 }
