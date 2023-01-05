@@ -1,4 +1,4 @@
-import {getTopicById } from "../api/data.js";
+import {getTopicById, getCommentsByTopicId } from "../api/data.js";
 import { spinner } from "../common/spinner.js";
 import { html, until } from "../lib.js";
 import { getUserData } from "../util.js";

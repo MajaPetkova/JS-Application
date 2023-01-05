@@ -9,7 +9,8 @@ const endpoints= {
 topics: `/data/topics?load=${encodeURIComponent("author=_ownerId:users")}&select=_id,title,_ownerId`,
 topicCount: "/data/topics?count",
 createTopic: `/data/topics`,
-topicById:(id)=> `/data/topics/${id}?load=${encodeURIComponent("author=_ownerId:users")}`
+topicById:(id)=> `/data/topics/${id}?load=${encodeURIComponent("author=_ownerId:users")}`,
+commentsByTopicId:(topicId)=> `/data/topicComments?where=` + encodeURIComponent(`topicId=${topicId}`),
 }
 export async function getAllTopics() {
   return api.get(endpoints.topics);
@@ -22,4 +23,7 @@ export async function createTopic(topic){
 }
 export async function getTopicById(id){
     return api.get(endpoints.topicById(id))
+}
+export async function getCommentsByTopicId(topicId){
+   return api.get(endpoints.commentsByTopicId(topicId))
 }

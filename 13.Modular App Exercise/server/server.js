@@ -1357,7 +1357,7 @@
             content:"Possimus voluptatum commodi, officiis inventore quam perspiciatis quasi sed nobis, sint soluta suscipit esse iure repellat vitae sit, ullam molestiae! Tempore vero molestias excepturi non, eos eligendi quaerat a inventore, harum iure alias eveniet odio numquam fugit labore illo?",
             _createdOn: 1613551388703
         }},
-        topicComents:{
+        topicComments:{
             "07f260f4-466c-4607-9a33-f7273b24f1b4": {
     			_ownerId: "35c62d76-8152-4626-8712-eeb96381bea8",
                 topicId:"8f414b4f-ab39-4d36-bedb-2ad69da9c830",
