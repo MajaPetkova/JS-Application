@@ -6,10 +6,10 @@ export const logout = api.logout;
 
 
 const endpoints= {
-topics: "/data/topics?select=_id,title",
+topics: `/data/topics?load=${encodeURIComponent("author=_ownerId:users")}&select=_id,title,_ownerId`,
 topicCount: "/data/topics?count",
-createTopic: "/data/topics",
-topicById: "/data/topics/"
+createTopic: `/data/topics`,
+topicById:(id)=> `/data/topics/${id}?load=${encodeURIComponent("author=_ownerId:users")}`
 }
 export async function getAllTopics() {
   return api.get(endpoints.topics);
@@ -21,5 +21,5 @@ export async function createTopic(topic){
  return api.post(endpoints.createTopic, topic)
 }
 export async function getTopicById(id){
-    return api.get(endpoints.topicById + id)
+    return api.get(endpoints.topicById(id))
 }
