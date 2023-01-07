@@ -10,7 +10,8 @@ topics: `/data/topics?load=${encodeURIComponent("author=_ownerId:users,comments=
 topicCount: "/data/topics?count",
 createTopic: `/data/topics`,
 topicById:(id)=> `/data/topics/${id}?load=${encodeURIComponent("author=_ownerId:users")}`,
-commentsByTopicId:(topicId)=> `/data/topicComments?where=` + encodeURIComponent(`topicId="${topicId}"`) + `&load=${encodeURIComponent("author=_ownerId:users,comments=_id")}`
+commentsByTopicId:(topicId)=> `/data/topicComments?where=` + encodeURIComponent(`topicId="${topicId}"`) + `&load=${encodeURIComponent("author=_ownerId:users,comments=_id")}`,
+createComment: "/data/topicComments"
 }
 export async function getAllTopics() {
   return api.get(endpoints.topics);
@@ -26,4 +27,7 @@ export async function getTopicById(id){
 }
 export async function getCommentsByTopicId(topicId){
    return api.get(endpoints.commentsByTopicId(topicId))
+}
+export async function createComment(comment){
+return api.post(endpoints.createComment, comment)
 }
