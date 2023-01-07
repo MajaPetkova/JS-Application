@@ -6,11 +6,11 @@ export const logout = api.logout;
 
 
 const endpoints= {
-topics: `/data/topics?load=${encodeURIComponent("author=_ownerId:users")}&select=_id,title,_ownerId`,
+topics: `/data/topics?load=${encodeURIComponent("author=_ownerId:users,comments=_id")}&select=_id,title,_ownerId`,
 topicCount: "/data/topics?count",
 createTopic: `/data/topics`,
 topicById:(id)=> `/data/topics/${id}?load=${encodeURIComponent("author=_ownerId:users")}`,
-commentsByTopicId:(topicId)=> `/data/topicComments?where=` + encodeURIComponent(`topicId=${topicId}`),
+commentsByTopicId:(topicId)=> `/data/topicComments?where=` + encodeURIComponent(`topicId="${topicId}"`) + `&load=${encodeURIComponent("author=_ownerId:users,comments=_id")}`
 }
 export async function getAllTopics() {
   return api.get(endpoints.topics);

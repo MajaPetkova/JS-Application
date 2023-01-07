@@ -123,6 +123,11 @@ form {
 .err-msg {
   color: red;
 }
+.card{
+  border: #34675c 1px solid;
+  border-radius: 6px;
+  margin-bottom: 30px;
+}
 .topic-content{
   padding: 12px 20px;
 }
