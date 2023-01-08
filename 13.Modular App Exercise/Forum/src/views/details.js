@@ -37,7 +37,7 @@ const commentForm = (onCommentSubmit) => html` <h3>Post Comment:</h3>
     <form @submit=${onCommentSubmit}>
       <label
         >Content
-        <input type="text" name="content" />
+        <textarea name="content" ></textarea>
       </label>
       <input class="action" type="submit" value="Post" />
     </form>
@@ -51,12 +51,17 @@ _topicData= getTopicById(ctx.params.id)
   function update(){
     ctx.render(detailsTemplate(loadTopic(ctx.params.id, onCommentSubmit)));
   }
- async function onCommentSubmit(data) {
+ async function onCommentSubmit(data, ev) {
+
     if (data.content == "") {
       return alert("Can not post empty comment");
     }
+    [...ev.target.querySelectorAll('input, textarea')].forEach(i=>i.disabled= true)
+
     data.topicId= ctx.params.id;
     await createComment(data);
+
+    [...ev.target.querySelectorAll('input, textarea')].forEach(i=>i.disabled= false)
     update();
   }
 }
