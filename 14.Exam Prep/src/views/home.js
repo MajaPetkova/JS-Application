@@ -1,4 +1,4 @@
-import {html, render } from "../lib.js";
+import {html } from "../lib.js";
 
 const homeTemplate= ()=> html `<section id="welcome">
 <div id="welcome-container">
