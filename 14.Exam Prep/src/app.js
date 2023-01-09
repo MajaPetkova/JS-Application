@@ -5,6 +5,7 @@ import { homePage } from "./views/home.js";
 import { loginPage } from "./views/login.js";
 import { registerPage } from "./views/register.js";
 import { getUserData } from "./util.js";
+import { createPage } from "./views/create.js";
 
 // import * as api from "./api/data.js";
 // window.api= api;
@@ -17,6 +18,7 @@ page("/", homePage);
 page("/memes", catalogPage);
 page("/login", loginPage);
 page("/register", registerPage);
+page("/create", createPage)
 
 updateUserNav();
 page.start();
