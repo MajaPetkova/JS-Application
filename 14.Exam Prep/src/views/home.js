@@ -1,4 +1,5 @@
 import {html } from "../lib.js";
+import { getUserData } from "../util.js";
 
 const homeTemplate= ()=> html `<section id="welcome">
 <div id="welcome-container">
@@ -6,12 +7,16 @@ const homeTemplate= ()=> html `<section id="welcome">
     <img src="./images/welcome-meme.jpg" alt="meme">
     <h2>Login to see our memes right away!</h2>
     <div id="button-div">
-        <a href="#" class="button">Login</a>
-        <a href="#" class="button">Register</a>
+        <a href="/login" class="button">Login</a>
+        <a href="/register" class="button">Register</a>
     </div>
 </div>
 </section>`;
 
 export function homePage(ctx){
-ctx.render(homeTemplate())
+    if(getUserData()){
+      ctx.page.redirect('/memes')
+    }else{
+        ctx.render(homeTemplate())
+    }
 }
