@@ -36,9 +36,9 @@ export function createPage(ctx) {
     const description = formData.get("description").trim();
     const img = formData.get("imageUrl").trim();
 
-if(title == '' || description=='' || img==''){
-    return alert("All fields are required")
-}
+    if (title == "" || description == "" || img == "") {
+      return alert("All fields are required");
+    }
 
     await createMeme({
       title,
@@ -46,6 +46,6 @@ if(title == '' || description=='' || img==''){
       img,
     });
 
-    ctx.page.redirect('/memes')
+    ctx.page.redirect("/memes");
   }
 }

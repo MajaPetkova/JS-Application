@@ -19,4 +19,4 @@ export function homePage(ctx){
     }else{
         ctx.render(homeTemplate())
     }
-}
+} 
