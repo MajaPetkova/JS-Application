@@ -20,7 +20,8 @@ page("/memes", catalogPage);
 page("/login", loginPage);
 page("/register", registerPage);
 page("/create", createPage);
-page("/details/:id", detailsPage)
+page("/details/:id", detailsPage);
+// page("/edit/:id")
 
 updateUserNav();
 page.start();
