@@ -7,6 +7,7 @@ import { registerPage } from "./views/register.js";
 import { getUserData } from "./util.js";
 import { createPage } from "./views/create.js";
 import { detailsPage } from "./views/details.js";
+import { editPage } from "./views/edit.js";
 
 // import * as api from "./api/data.js";
 // window.api= api;
@@ -21,8 +22,7 @@ page("/login", loginPage);
 page("/register", registerPage);
 page("/create", createPage);
 page("/details/:id", detailsPage);
-// page("/edit/:id")
-
+page("/edit/:id" , editPage)
 updateUserNav();
 page.start();
 
