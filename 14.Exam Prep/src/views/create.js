@@ -2,7 +2,7 @@ import { createMeme } from "../api/data.js";
 import { html } from "../lib.js";
 
 const createTemplate = (onCreate) => html`<section id="create-meme">
-  <form @submit="${onCreate}id" ="create-form">
+  <form @submit="${onCreate}"  id ="create-form">
     <div class="container">
       <h1>Create Meme</h1>
       <label for="title">Title</label>
