@@ -23,7 +23,7 @@ export async function detailsPage(ctx) {
   const meme = await getMemeById(ctx.params.id);
 
   const userData = getUserData();
-  const isOwner = userData && meme._ownerId != userData.id;
+  const isOwner = userData && meme._ownerId == userData.id;
   ctx.render(detailsTemplate(meme, isOwner, onDelete));
  
   async function onDelete(){

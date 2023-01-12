@@ -60,7 +60,7 @@ export async function login(email, password) {
   const userData = {
     username: result.username,
     email: result.email,
-    id: result.id,
+    id: result._id,
     gender: result.gender,
     token: result.accessToken,
   };
@@ -73,7 +73,7 @@ export async function register(username, email, password, gender) {
     const userData = {
       username: result.username,
       email: result.email,
-      id: result.id,
+      id: result._id,
       gender: result.gender,
       token: result.accessToken,
     };
