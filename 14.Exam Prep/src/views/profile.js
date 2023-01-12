@@ -5,7 +5,7 @@ import { getUserData } from "../util.js";
 const profileTemplate = (memes, user) => html`
 <section id="user-profile-page" class="user-profile">
             <article class="user-info">
-                <img id="user-avatar-url" alt="user-profile" src=${user.gender}>
+                <img id="user-avatar-url" alt="user-profile" src="/images/${user.gender}.png">
                 <div class="user-content">
                     <p>Username: ${user.username}</p>
                     <p>Email: ${user.email}</p>
@@ -20,7 +20,7 @@ const profileTemplate = (memes, user) => html`
 
 const memeCard = (meme) => html` <div class="user-meme">
 <p class="user-meme-title">${meme.title}</p>
-<img class="userProfileImage" alt="meme-img" src=${meme.imageUrl}>
+<img class="userProfileImage" alt="meme-img" src="${meme.imageUrl}">
 <a class="button" href="/details/${meme._id}">Details</a>
 </div> `;
 

@@ -1,5 +1,6 @@
 import { register } from "../api/data.js";
 import { html } from "../lib.js";
+import { notify } from "../notify.js";
 
 const registerTemplate = (onSubmit) => html`<section id="register">
   <form @submit=${onSubmit} id="register-form">
@@ -56,11 +57,11 @@ export function registerPage(ctx) {
     const gender = formData.get("gender").trim();
 
     if (username == "" || email == "" || password == "" || gender == "") {
-      return alert("All fields are required");
+      return notify("All fields are required");
     }
 
-    if(password != repass){
-      return alert("Passwords don\'t match")
+    if (password != repass) {
+      return notify("Passwords don't match");
     }
     await register(username, email, password, gender);
     ctx.updateUserNav();
