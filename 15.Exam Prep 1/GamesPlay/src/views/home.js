@@ -1,7 +1,7 @@
-import { getAllGames } from "../api/data.js";
+import { getLatestGames } from "../api/data.js";
 import { html } from "../lib.js";
 
-const homeTemplate = (games) => html`<section id="welcome-world">
+const homeTemplate = (latestGames) => html`<section id="welcome-world">
 
 <div class="welcome-message">
     <h2>ALL new games are</h2>
@@ -11,9 +11,9 @@ const homeTemplate = (games) => html`<section id="welcome-world">
 
 <div id="home-page">
     <h1>Latest Games</h1>
-     ${games.length == 0 
+     ${latestGames.length == 0 
     ? html `<p class="no-articles">No games yet</p>`
-    : games.map(gameCard)}
+    : latestGames.map(gameCard)}
   
 </div>
 </section>`;
@@ -33,6 +33,6 @@ const gameCard = (game) => html`
 </div>`;
 
 export async function homePage(ctx) {
-  const games = await getAllGames();
-  ctx.render(homeTemplate(games));
+  const latestGames = await getLatestGames();
+  ctx.render(homeTemplate(latestGames));
 }

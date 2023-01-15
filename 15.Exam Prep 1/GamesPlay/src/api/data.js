@@ -11,6 +11,9 @@ export async function getAllGames(){
 export async function getGameById(id){
 return api.get(`/data/games/` + id)
 }
+export async function getLatestGames(){
+return api.get("/data/games?sortBy=_createdOn%20desc&distinct=category")
+}
 
 export async function addGame(game){
 return api.post("/data/games", game)
