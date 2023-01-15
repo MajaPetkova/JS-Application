@@ -3,6 +3,7 @@ import { page, render } from "./lib.js";
 import { getUserData } from "./util.js";
 import { homePage } from "./views/home.js";
 import { loginPage } from "./views/login.js";
+import { registerPage } from "./views/register.js";
 
 // import * as api from "./api/data.js";
 // window.api= api;
@@ -14,6 +15,7 @@ updateUserNav();
 page(decorateContext);
 page("/home", homePage);
 page("/login", loginPage);
+page("/register", registerPage);
 
 page.start();
 
