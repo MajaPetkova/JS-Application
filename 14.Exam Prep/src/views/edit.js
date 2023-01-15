@@ -1,5 +1,6 @@
 import { getMemeById, editMeme} from "../api/data.js";
 import { html } from "../lib.js";
+import { notify } from "../notify.js";
 
 const editTemplate = (meme, onEdit) => html`<section id="edit-meme">
   <form @submit=${onEdit} id="edit-form">
@@ -47,7 +48,7 @@ export async function editPage(ctx) {
     const imageUrl = formData.get("imageUrl");
 
     if (title == "" || description == "" || imageUrl == "") {
-      return alert("All fields are required");
+      return notify("All fields are required");
     }
     await editMeme(ctx.params.id, {
       title,
