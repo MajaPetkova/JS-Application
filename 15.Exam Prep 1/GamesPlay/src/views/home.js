@@ -2,7 +2,6 @@ import { getLatestGames } from "../api/data.js";
 import { html } from "../lib.js";
 
 const homeTemplate = (latestGames) => html`<section id="welcome-world">
-
 <div class="welcome-message">
     <h2>ALL new games are</h2>
     <h3>Only in GamesPlay</h3>
@@ -14,7 +13,6 @@ const homeTemplate = (latestGames) => html`<section id="welcome-world">
      ${latestGames.length == 0 
     ? html `<p class="no-articles">No games yet</p>`
     : latestGames.map(gameCard)}
-  
 </div>
 </section>`;
 
