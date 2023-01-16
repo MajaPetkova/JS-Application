@@ -1,8 +1,8 @@
-import { getGameById } from "../api/data.js";
+import { deleteGame, getGameById } from "../api/data.js";
 import { html } from "../lib.js";
 import { getUserData } from "../util.js";
 
-const detailsTemplate = (game, isOwner) => html`
+const detailsTemplate = (game, isOwner, onDelete) => html`
   <section id="game-details">
     <h1>Game Details</h1>
     <div class="info-section">
@@ -32,9 +32,9 @@ const detailsTemplate = (game, isOwner) => html`
     </div> -->
 
       <!-- Edit/Delete buttons ( Only for creator of this game )  -->
-      ${isOwner ? html`   <div class="buttons">
+      ${isOwner ? html`<div class="buttons">
       <a href="/edit/${game._id}" class="button">Edit</a>
-      <a href="/delete" class="button">Delete</a>
+      <a @click=${onDelete} href="javascript:void(0)" class="button">Delete</a>
        </div>
       </div>` : null}
 
@@ -56,5 +56,13 @@ export async function detailsPage(ctx) {
   const game = await getGameById(ctx.params.id);
   const userData = getUserData();
   const isOwner = userData && userData.id == game._ownerId;
-  ctx.render(detailsTemplate(game, isOwner));
+  ctx.render(detailsTemplate(game, isOwner, onDelete));
+
+  async function onDelete(){
+    const choice= confirm(`Are you sure you want to delete ${game.title}?`);
+    if(choice){
+        await deleteGame(game._id)
+        ctx.page.redirect("/home")
+    }
+  }
 }
