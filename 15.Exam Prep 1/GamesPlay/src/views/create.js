@@ -65,14 +65,14 @@ export function createPage(ctx) {
 
     const title = formData.get("title").trim();
     const category = formData.get("category").trim();
-    const level= formData.get("maxLevel").trim();
-    const image= formData.get("imageUrl").trim();
+    const maxLevel= formData.get("maxLevel").trim();
+    const imageUrl= formData.get("imageUrl").trim();
     const summary= formData.get("summary").trim();
 
-    if (title == "" || category == "" || level == "" || image == "" || summary == "") {
+    if (title == "" || category == "" || maxLevel == "" || imageUrl == "" || summary == "") {
       return alert("All fields are required");
     }
-   await addGame({title, category, level, image, summary})
+   await addGame({title, category, maxLevel, imageUrl, summary})
     ctx.page.redirect('/home')
   }
 }

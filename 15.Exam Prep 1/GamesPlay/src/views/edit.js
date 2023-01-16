@@ -48,7 +48,7 @@ export async function editPage(ctx) {
     if (title == "" || category == "" || maxLevel == "" || imageUrl == "" || summary == "") {
        return alert("All fields are required");
    }
-   console.log(maxLevel)
+
    await editGame(ctx.params.id, {title, category, maxLevel, imageUrl, summary})
    ctx.page.redirect(`/details/${game._id}`)
   }

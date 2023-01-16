@@ -10,7 +10,7 @@ const homeTemplate = (latestGames) => html`<section id="welcome-world">
 
 <div id="home-page">
     <h1>Latest Games</h1>
-     ${latestGames.length == 0 
+    ${latestGames.length == 0 
     ? html `<p class="no-articles">No games yet</p>`
     : latestGames.map(gameCard)}
 </div>
