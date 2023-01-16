@@ -1,5 +1,6 @@
 import { addGame } from "../api/data.js";
 import { html } from "../lib.js";
+import { getUserData } from "../util.js";
 
 const createTemplate = (onCreate) => html` <section
   id="create-page"
@@ -51,6 +52,12 @@ const createTemplate = (onCreate) => html` <section
 export function createPage(ctx) {
   ctx.render(createTemplate(onCreate));
 
+
+  const userData= getUserData();
+  
+  if(!userData){
+    ctx.page.redirect("/login")
+  }
   async function onCreate(ev) {
     ev.preventDefault();
 
