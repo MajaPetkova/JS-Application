@@ -13,9 +13,31 @@
     <h1>Components Demo</h1>
     <p>Standart Paragraph</p>
     <my-element>Hello</my-element>
+    <button id="btn">Click Here</button>
+
+    <main></main>
+
+    <template id="my-template">
+        <article>
+            <h2>Title</h2>
+            <div>
+                <p>Article Content</p>
+            </div>
+        </article>
+    </template>
 
     <script type="module">
-      class MyComponent extends HTMLElement {
+        const main= document.querySelector("main");
+
+         document.getElementById("btn").addEventListener("click", ()=>{
+         const template= document.getElementById("my-template");
+        //  main.appendChild(template)
+         main.appendChild(template.content.cloneNode(true))
+         console.log(template)
+        })
+     
+     
+        class MyComponent extends HTMLElement {
         constructor(){
             super();
 
