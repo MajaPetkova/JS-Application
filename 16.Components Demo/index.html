@@ -11,26 +11,26 @@
   <body>
 
     <h1>Components Demo</h1>
-    <p>Standart Paragraph</p>
-    <my-element>Hello</my-element>
+    <p>Standard Paragraph</p>
+    <my-element title="Hello World">Hello <span slot="title">Title from Content</span></my-element>
     <button id="btn">Click Here</button>
 
     <main></main>
 
     <template id="my-template">
         <article>
-            <h2>Title</h2>
+            <h2><slot name="title">Title</slot></h2>
             <div>
-                <p>Article Content</p>
+                <p><slot>Article Content</slot></p>
             </div>
         </article>
     </template>
 
     <script type="module">
         const main= document.querySelector("main");
+        const template= document.getElementById("my-template");
 
          document.getElementById("btn").addEventListener("click", ()=>{
-         const template= document.getElementById("my-template");
         //  main.appendChild(template)
          main.appendChild(template.content.cloneNode(true))
          console.log(template)
@@ -43,15 +43,15 @@
 
             this.attachShadow({mode: "open"})
 
-            const pElement= document.createElement('p');
-            pElement.textContent= "Paragraph inside shadow DOM";
-            this.shadowRoot.appendChild(pElement);
+            // const pElement= document.createElement('p');
+            // pElement.textContent= "Paragraph inside shadow DOM";
+            // this.shadowRoot.appendChild(pElement);
 
-            const style= document.createElement("style");
-            style.innerHTML = `p{
-                color: blue
-            }`;
-            this.shadowRoot.appendChild(style)
+            // const style= document.createElement("style");
+            // style.innerHTML = `p{
+            //     color: blue
+            // }`;
+            this.shadowRoot.appendChild(template.content.cloneNode(true))
           }
       }
       window.customElements.define("my-element", MyComponent);
