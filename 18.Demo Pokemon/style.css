@@ -53,6 +53,9 @@ h1 {
   font-size: 12px;
   font-weight: 600;
 }
+.types span{
+    padding: 5px 20px;
+}
 .stats {
   display: flex;
   justify-content: space-between;

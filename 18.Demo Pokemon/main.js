@@ -31,24 +31,33 @@ function onGenerate(data){
 <img src="${img}" alt="">
 <h2 class="poke-name">${pokeName}</h2>
 <div class="types">
-    <span>Type 1</span>
-    <span>Type 2</span>
+  
 </div>
 <div class="stats">
     <div>
         <h3>${statAttack}</h3>
-        <p>attack</p>
+        <p>Attack</p>
     </div>
     <div>
         <h3>${statDefense}</h3>
-        <p>defense</p>
+        <p>Defense</p>
     </div>
     <div>
         <h3>${statSpeed}</h3>
-        <p>speed</p>
+        <p>Speed</p>
     </div>
 </div>`
     // console.log(statAttack)
+    appendTypes(data.types)
+}
+function appendTypes(types){
+    // console.log(types)
+    types.forEach(x =>{
+      const span = document.createElement("SPAN")
+      span.textContent = x.type.name;
+      document.querySelector(".types").appendChild(span)
+    //   console.log(span.textContent)
+    })
 }
 
 
