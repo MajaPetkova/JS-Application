@@ -72,3 +72,9 @@ h1{
 #result span{
     color: grey
 }
+.container h3{
+    margin-left: -20px;
+    text-align: left;
+    font-size: 24px;
+    color: red;
+}
