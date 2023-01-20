@@ -1,16 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
     <title>Document</title>
-</head>
-<body>
-    
-
+  </head>
+  <body>
+    <h1>Country Picker</h1>
+    <div class="container">
+      <div class="search-wrapper">
+        <input
+          type="text"
+          id="country-input"
+          placeholder="Enter a country name here"
+        />
+        <button id="search-btn">Search</button>
+      </div>
+      <div id="result">
+          <img class="flag-img" src="https://flagcdn.com/ru.svg" alt="country-img" />
+          <h3>Russia</h3>
+          <div class="wrapper">
+             <div class="data-wrapper">
+                <h4>Capital:  </h4><span>Moscow</span>
+             </div>
+        </div>
+      </div>
+    </div>
 
     <script src="main.js"></script>
-</body>
+  </body>
 </html>
