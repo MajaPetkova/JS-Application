@@ -44,18 +44,31 @@ h1{
     outline: none;
 }
 #result {
-    height: 60vh;
+    /* height: 60vh; */
     padding: 20px 30px;
     /* display: none; */
 }
-/* .country{
-    display: flex;
-    align-items: center;
-   gap:40px
-} */
 .flag-img{
     width: 45%;
     border:1px solid black;
     display: block;
     margin:20px auto;
+}
+#result h2{
+    font-weight: 600;
+    color: rgb(45, 46, 139);
+    text-align: center;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+}
+.data-wrapper{
+    margin-bottom: 20px;
+}
+#result h4{
+   display: inline; 
+   font-weight: 700;
+   color: rgb(113, 110, 110);
+}
+#result span{
+    color: grey
 }
