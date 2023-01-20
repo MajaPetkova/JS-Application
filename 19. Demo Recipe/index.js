@@ -27,5 +27,5 @@ fetch(url + inputEl)
         console.log(ingredient, measure);
       }
     }
-    result.innerHTML= ``
+    // result.innerHTML= ``
   });

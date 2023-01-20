@@ -18,7 +18,7 @@ h1 {
   /* height: 70vh; */
   font-size: 16px;
   transform: translate(-50%, -50%);
-  top: 30%;
+  top: 50%;
   left: 50%;
   position: absolute;
   border-radius: 10px;
@@ -47,6 +47,51 @@ h1 {
   background-color: #f4c531;
   color: white;
 }
-img{
-  
+img {
+  display: block;
+  width: 40%;
+  margin: 20px auto;
+}
+.recipe{
+  background-color: aqua;
+  position: absolute;
+  width: 100%;
+  min-height: 100%;
+  top:0;
+  left:0;
+  z-index: 2;
+  border-radius: 10px;
+  display: none;
+}
+.details{
+  background-color: #f4c531;
+  text-align: center;
+padding: 10px;
+  margin: -20px auto 0 auto;
+  width: 50%;
+height: 60px;
+
+}
+.details h2{
+  font-size: 20px;
+  font-weight: 600;
+}
+.details h4{
+  font-size: 18px;
+  font-weight: 400;
+}
+.recipe pre {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  padding: 30px 16px;
+}
+#hide-recipe{
+  font-size: 18px;
+  position: relative;
+  width: 5%;
+  background-color: #f4c531;
+  border: none;
+  left: 90%;
+  top:16px;
+  border-radius: 5px;
 }
