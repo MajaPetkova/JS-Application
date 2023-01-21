@@ -14,7 +14,7 @@ h1 {
 .container {
   background-color: white;
   padding: 20px 24px;
-  width: 70vw;
+  width: 50vw;
   /* height: 70vh; */
   font-size: 16px;
   transform: translate(-50%, -50%);
@@ -25,23 +25,35 @@ h1 {
   box-shadow: 20px 20px 20px rgba(0, 0, 0, 0.325);
 }
 .search-container {
-  width: 100%;
+  width: 60%;
   display: grid;
-  grid-template-columns: 9fr 3fr;
-  gap: 16px;
+  grid-template-columns: 9fr 4fr;
+  gap: 40px;
+  justify-content: center;
+  margin: 10px auto;
+
 }
 .search-container input {
   font-size: 18px;
   border: none;
   border-bottom: #f4c531 2px solid;
-  padding: 12px;
+  width: 400px;
+  text-align: center;
+  margin-left:10px ;
 }
 .search-container button {
   background-color: black;
   color: white;
   border: none;
   border-radius: 30px;
+  left: 75%;
+  padding: 10px 16px;
+  background-color: #f4c531;
+  color: black;
+  border: none;
+  border-radius: 30px;
   font-size: 18px;
+  font-weight: 600;
 }
 .search-container button:hover {
   background-color: #f4c531;
@@ -52,46 +64,69 @@ img {
   width: 40%;
   margin: 20px auto;
 }
-.recipe{
-  background-color: aqua;
+.recipe {
+  background-color: white;
   position: absolute;
   width: 100%;
   min-height: 100%;
-  top:0;
-  left:0;
+  top: 0;
+  left: 0;
   z-index: 2;
   border-radius: 10px;
   display: none;
 }
-.details{
+.recipe button{
+  margin: 40px
+}
+.details {
   background-color: #f4c531;
   text-align: center;
-padding: 10px;
+  padding: 10px;
   margin: -20px auto 0 auto;
   width: 50%;
-height: 60px;
-
+  height: 60px;
 }
-.details h2{
+.details h2 {
   font-size: 20px;
   font-weight: 600;
 }
-.details h4{
+.details h4 {
   font-size: 18px;
   font-weight: 400;
 }
 .recipe pre {
   white-space: pre-wrap;
   word-wrap: break-word;
-  padding: 30px 16px;
+  padding: 60px 16px;
 }
-#hide-recipe{
+#hide-recipe {
   font-size: 18px;
   position: relative;
   width: 5%;
   background-color: #f4c531;
   border: none;
   left: 90%;
-  top:16px;
+  top: 16px;
   border-radius: 5px;
+}
+.show-recipe {
+  position: relative;
+  left: 75%;
+  padding: 10px 16px;
+  margin: 20px;
+  background-color: #f4c531;
+  color: black;
+  border: none;
+  border-radius: 30px;
+  font-size: 18px;
+  font-weight: 600;
+}
+ul {
+  font-size: 20px;
+  position: relative;
+  display: grid;
+  justify-content: center;
+  /* gap: 0px; */
+  margin-top: 20px;
+  text-align: center;
 }

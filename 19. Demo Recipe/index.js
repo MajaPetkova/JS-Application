@@ -27,5 +27,41 @@ fetch(url + inputEl)
         console.log(ingredient, measure);
       }
     }
-    // result.innerHTML= ``
+    result.innerHTML = `
+    <img src="${img}" alt="">
+  </div>
+  <div class="details">
+    <h2>${name}</h2>
+    <h4>${area}</h4>
+  </div>
+  <div class="ingredients-con">
+ <ul>
+  
+  </ul>
+  </div>
+  <div class="recipe">
+    <button id="hide-recipe">X</button>
+    <pre class="instructions">${instructions}</pre>
+  </div>
+  <button class="show-recipe">View Recipe</button>
+</div>`;
+
+    let ingredientCon = document.querySelector(".ingredients-con");
+    const parentEl = document.createElement("ul");
+    let recipe = document.querySelector(".recipe");
+    let hideRecipe = document.getElementById("hide-recipe");
+    let showRecipe = document.querySelector(".show-recipe");
+
+    ingredients.forEach((x) => {
+      let child = document.createElement("li");
+      child.innerText = x;
+      parentEl.appendChild(child);
+      ingredientCon.appendChild(parentEl);
+    });
+    hideRecipe.addEventListener("click", ()=>{
+        recipe.style.display = "none"
+    } )
+    showRecipe.addEventListener("click", ()=>{
+        recipe.style.display = "block"
+    })
   });
