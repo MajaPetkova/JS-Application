@@ -79,6 +79,6 @@ export async function register(email, password) {
   return result;
 }
 export async function logout() {
-  await get("/users/logout");
+  get("/users/logout");
   clearUserData();
 }

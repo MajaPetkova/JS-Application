@@ -43,6 +43,7 @@ export async function registerPage(ctx) {
     }
 
     await register(email, password);
+    ctx.updateUserNav();
     ctx.page.redirect("/dashboard");
   }
 }
