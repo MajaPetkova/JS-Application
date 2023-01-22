@@ -10,3 +10,6 @@ export async function getAllProducts() {
 export async function getProductById(id){
     return api.get("/data/products/" + id)
 }
+export async function createProduct(item){
+  return api.post("/data/products" , item)
+}

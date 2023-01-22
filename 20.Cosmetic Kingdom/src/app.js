@@ -1,6 +1,7 @@
 import { logout } from "./api/data.js";
 import{page, render} from "./lib.js"
 import { getUserData } from "./util.js";
+import { createPage } from "./views/createProduct.js";
 // import * as api from "./api/data.js"
 // window.api= api;
 
@@ -18,7 +19,8 @@ page(decorateContext);
 page("/", homePage)
 page("/dashboard", dashboardPage);
 page("/login", loginPage);
-page("/register", registerPage)
+page("/register", registerPage);
+page("/addProduct" , createPage)
 page.start();
 
 
