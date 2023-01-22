@@ -13,3 +13,6 @@ export async function getProductById(id){
 export async function createProduct(item){
   return api.post("/data/products" , item)
 }
+export async function deleteProduct(id){
+  return api.del("/data/products/" + id)
+}

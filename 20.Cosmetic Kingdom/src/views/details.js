@@ -1,8 +1,10 @@
-import { getProductById } from "../api/data.js";
+import { deleteProduct, getProductById } from "../api/data.js";
 import { html } from "../lib.js";
 import { getUserData } from "../util.js";
 
-const detailsTemplate = (product, isOwner) => html` <section id="details">
+const detailsTemplate = (product, isOwner, onDelete) => html` <section
+  id="details"
+>
   <div id="details-wrapper">
     <img id="details-img" src="${product.imageUrl}" alt="example1" />
     <p id="details-title">${product.name}</p>
@@ -22,7 +24,7 @@ const detailsTemplate = (product, isOwner) => html` <section id="details">
     <div id="action-buttons">
       ${isOwner
         ? html`<a href="/edit/${product._id}" id="edit-btn">Edit</a>
-            <a href="" id="delete-btn">Delete</a>`
+            <a @click=${onDelete} href="" id="delete-btn">Delete</a>`
         : html` <a href="" id="buy-btn">Buy</a>`}
     </div>
   </div>
@@ -32,5 +34,14 @@ export async function detailsPage(ctx) {
   const product = await getProductById(ctx.params.id);
   const userData = getUserData();
   const isOwner = userData && userData.id == product._ownerId;
-  ctx.render(detailsTemplate(product, isOwner));
+  ctx.render(detailsTemplate(product, isOwner, onDelete));
+
+  async function onDelete() {
+    const choice = confirm("Are you sure you want to delete this product?");
+
+    if (choice) {
+      await deleteProduct(ctx.params.id);
+      ctx.page.redirect("/dashboard")
+    }
+  }
 }
