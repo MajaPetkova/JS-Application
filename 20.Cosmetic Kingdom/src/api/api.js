@@ -1,4 +1,5 @@
 import { clearUserData, getUserData, setUserData } from "../util.js";
+import { notify } from "../views/notify.js";
 
 const hostName = "http://localhost:3030";
 
@@ -22,7 +23,8 @@ async function request(url, options) {
       return  res.json();
     }
   } catch (err) {
-    alert(err.message);
+    // alert(err.message);
+    notify(err.message)
     throw err;
   }
 }
