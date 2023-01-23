@@ -1,15 +1,17 @@
-import { logout } from "./api/data.js";
 import{page, render} from "./lib.js"
 import { getUserData } from "./util.js";
-import { createPage } from "./views/createProduct.js";
 // import * as api from "./api/data.js"
 // window.api= api;
 
+import { createPage } from "./views/createProduct.js";
+import { logout } from "./api/data.js";
 import { dashboardPage } from "./views/dashboard.js";
 import { detailsPage } from "./views/details.js";
 import { homePage } from "./views/home.js";
 import { loginPage } from "./views/login.js";
 import { registerPage } from "./views/register.js";
+import { editPage } from "./views/edit.js";
+
 
 
 document.getElementById("logout-btn").addEventListener("click", onLogout);
@@ -22,7 +24,8 @@ page("/dashboard", dashboardPage);
 page("/login", loginPage);
 page("/register", registerPage);
 page("/addProduct" , createPage);
-page("/details/:id" , detailsPage)
+page("/details/:id" , detailsPage);
+page("/edit/:id", editPage)
 page.start();
 
 
