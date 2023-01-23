@@ -22,12 +22,10 @@ const detailsTemplate = (product, isOwner, isGuest, onDelete) => html` <section
     </div>
 
     <div id="action-buttons">
-      ${isGuest ? html `${isOwner
+     ${isOwner
         ? html`<a href="/edit/${product._id}" id="edit-btn">Edit</a>
             <a @click=${onDelete} href="" id="delete-btn">Delete</a>`
-        : html` <a href="" id="buy-btn">Buy</a>`}`
-        : null
-      }
+        : html` <a href="" id="buy-btn">Buy</a>`}
       </div>
 </section>`;
 

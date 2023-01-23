@@ -1,5 +1,6 @@
 import { editProduct, getProductById } from "../api/data.js";
 import { html } from "../lib.js";
+import { notify } from "./notify.js";
 
 const editTemplate = (product, onEdit) => html` <section id="edit">
   <div class="form">
@@ -68,7 +69,7 @@ export async function editPage(ctx) {
       description == "" ||
       price == ""
     ) {
-      return alert("All fields are required");
+      return notify("All fields are required");
     }
     await editProduct(ctx.params.id, {
       name,

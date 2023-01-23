@@ -1,5 +1,6 @@
 import { createProduct } from "../api/data.js";
 import { html, } from "../lib.js";
+import { notify } from "./notify.js";
 
 const createTemplate = (onCreate) => html`<section id="create">
 <div class="form">
@@ -57,7 +58,7 @@ export async function createPage(ctx) {
     const price= formData.get("price").trim();
 
     if(name == "" || imageUrl == "" || category == "" || description == "" || price == ""){
-      return alert("All fields are required")
+      return notify("All fields are required")
     }
     await createProduct({name, imageUrl,category, description, price})
  
