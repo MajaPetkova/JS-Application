@@ -1,7 +1,7 @@
 import{page, render} from "./lib.js"
 import { getUserData } from "./util.js";
-// import * as api from "./api/data.js"
-// window.api= api;
+import * as api from "./api/data.js"
+window.api= api;
 
 import { createPage } from "./views/createProduct.js";
 import { logout } from "./api/data.js";

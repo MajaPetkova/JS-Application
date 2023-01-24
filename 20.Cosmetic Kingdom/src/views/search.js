@@ -14,12 +14,14 @@ const searchTemplate = (products, onSearch, params) => html`<h2>Search</h2>
         />
         <button type="submit">Search</button>
       </form>
-    </div>
+      </div>
+    </section>
 
-    ${products.length == 0
-      ? html`<h2>No products found.</h2>`
-      : products.map(productCard)}
-  </section>`;
+      <div class="search">
+      ${products.length == 0
+        ? html`<h2>No products found.</h2>`
+        : products.map(productCard)}
+        </div>`;
 
 export async function searchPage(ctx) {
   const params = ctx.querystring.split("=")[1] || "";

@@ -20,5 +20,5 @@ export async function deleteProduct(id){
   return api.del("/data/products/" + id)
 }
 export async function searchProduct(query){
-  return api.get(`/data/products?where=` + encodeURIComponent(`title LIKE "${query}"`))
+  return api.get(`/data/products?where=` + encodeURIComponent(`name LIKE "${query}"`))
 }

@@ -84,3 +84,9 @@ footer p {
   color: rgb(240, 14, 52);;
   text-align: center;
 }
+.search{
+display: flex;
+flex-wrap: wrap;
+justify-content: center;
+gap:20px;
+}
