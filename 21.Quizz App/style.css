@@ -23,7 +23,13 @@ body {
 ul{
     list-style-type:none;
 }
-
+ul li{
+    margin: 16px 0;
+    font-size: 18px;
+}
+h2{
+    margin: 0;
+}
 button{
     background-color: rgb(89, 127, 165);
     display: block;
