@@ -1,5 +1,6 @@
 import { getAllProducts } from "../api/data.js";
 import {html} from "../lib.js";
+import { productCard } from "./common.js";
 // const main= document.querySelector("main")
 
 const dashboardTemplate= (products)=> html `<h2>Products</h2>
@@ -9,14 +10,14 @@ const dashboardTemplate= (products)=> html `<h2>Products</h2>
 </section>
  `
 
-const productCard= (product)=> html ` <div class="product">
-<img src="${product.imageUrl}" alt="example1" />
-<p class="title">
-  ${product.title}
-</p>
-<p><strong>Price:</strong><span class="price">${product.price}</span>$</p>
-<a class="details-btn" href="/details/${product._id}">Details</a>
-</div>`
+// const productCard= (product)=> html ` <div class="product">
+// <img src="${product.imageUrl}" alt="example1" />
+// <p class="title">
+//   ${product.title}
+// </p>
+// <p><strong>Price:</strong><span class="price">${product.price}</span>$</p>
+// <a class="details-btn" href="/details/${product._id}">Details</a>
+// </div>`
 
  export async function dashboardPage(ctx){
   const products = await getAllProducts()

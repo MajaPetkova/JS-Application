@@ -11,6 +11,7 @@ import { homePage } from "./views/home.js";
 import { loginPage } from "./views/login.js";
 import { registerPage } from "./views/register.js";
 import { editPage } from "./views/edit.js";
+import { searchPage } from "./views/search.js";
 
 
 
@@ -25,7 +26,8 @@ page("/login", loginPage);
 page("/register", registerPage);
 page("/addProduct" , createPage);
 page("/details/:id" , detailsPage);
-page("/edit/:id", editPage)
+page("/edit/:id", editPage);
+page("/search", searchPage)
 page.start();
 
 
