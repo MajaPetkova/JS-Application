@@ -27,8 +27,13 @@ ul li{
     margin: 16px 0;
     font-size: 18px;
 }
+ul li label{
+    cursor: pointer;
+}
 h2{
+    padding: 90px;
     margin: 0;
+    text-align: center;
 }
 button{
     background-color: rgb(89, 127, 165);
