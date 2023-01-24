@@ -1,9 +1,8 @@
-import { searchProduct } from "../api/data.js";
 import { html } from "../lib.js";
 import { productCard } from "./common.js";
+import { searchProduct } from "../api/data.js";
 
-
-const searchTemplate = (products, onSearch, params = "") => html`<h2>Search</h2>
+const searchTemplate = (products, onSearch, params) => html`<h2>Search</h2>
   <section id="dashboard">
     <div class="form">
       <form @submit=${onSearch} class="create-form">
@@ -23,13 +22,14 @@ const searchTemplate = (products, onSearch, params = "") => html`<h2>Search</h2>
   </section>`;
 
 export async function searchPage(ctx) {
-  const params = ctx.querystring.split("=")[1];
+  const params = ctx.querystring.split("=")[1] || "";
   let products = [];
 
-  if(params){
-    products = await searchProduct(decodeURIComponent(params))
+  if (params) {
+    products = await searchProduct(decodeURIComponent(params));
+    console.log(products);
   }
-  //   console.log(params);
+
   ctx.render(searchTemplate(products, onSearch, params));
 
   function onSearch(ev) {
