@@ -3,7 +3,7 @@ const main = document.getElementById("main");
 const form = document.getElementById("form");
 const search = document.getElementById("search");
 
-getUser("FlorinPop17");
+getUser();
 async function getUser(username) {
   const res = await fetch(apiUrl + username);
   const data = await res.json();
