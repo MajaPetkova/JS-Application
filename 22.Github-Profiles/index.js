@@ -16,7 +16,7 @@ async function getUser(username) {
 async function getRepos(username) {
   const res = await fetch(`https://api.github.com/users/${username}/repos`);
   const data = await res.json();
-  addReposToCard(data)
+  addReposToCard(data);
 }
 
 function createUserCard(user) {
@@ -40,16 +40,19 @@ function createUserCard(user) {
   main.innerHTML = cardHtml;
 }
 
-function addReposToCard(repos){
-const reposEl= document.getElementById("repos");
-repos.slice(0,9).forEach(x=> {
-  const repoEl= document.createElement("a");
-  repoEl.classList.add("repo");
-  repoEl.href = x.html_url;
-  repoEl.target= "_blank"
-  repoEl.textContent= x.name;
-  reposEl.appendChild(repoEl)
-})
+function addReposToCard(repos) {
+  const reposEl = document.getElementById("repos");
+  repos
+    .sort((a, b) => b.stargazers_count - a.stargazers_count)
+    .slice(0, 9)
+    .forEach((x) => {
+      const repoEl = document.createElement("a");
+      repoEl.classList.add("repo");
+      repoEl.href = x.html_url;
+      repoEl.target = "_blank";
+      repoEl.textContent = x.name;
+      reposEl.appendChild(repoEl);
+    });
 }
 
 form.addEventListener("submit", (ev) => {
@@ -60,6 +63,6 @@ form.addEventListener("submit", (ev) => {
     getUser(user);
     user.value = "";
   } else {
-    main.innerHTML= "Please enter a GitHub username"
+    main.innerHTML = "Please enter a GitHub username";
   }
 });
