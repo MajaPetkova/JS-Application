@@ -18,6 +18,7 @@ body {
 input {
   padding: 16px;
   font-size: 16px;
+  font-weight: 600;
   font-family: inherit;
   border: none;
   border-radius: 20px;
@@ -26,6 +27,7 @@ input {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.672);
   min-width: 200px;
   margin-bottom: 20px;
+  color:rgb(0, 105, 147)
 }
 .weather {
   text-align: center;

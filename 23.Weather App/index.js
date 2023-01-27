@@ -10,7 +10,7 @@ getWeatherByLocation("London")
 async function getWeatherByLocation(location) {
   const res = await fetch(url(location), { origin: "cors" });
   const data = await res.json();
-    console.log(data.weather[0].main);
+    console.log(data);
 
   addWeatherToPage(data);
 }
@@ -20,16 +20,17 @@ function addWeatherToPage(data) {
   const weather = document.createElement("div");
   weather.classList.add("weather");
   weather.innerHTML = `
-<h2>${temp}°C</h2>
+<h2>${temp} °C</h2>
 <p>in ${data.name} </p>
 <img src="https://openweathermap.org/img/w/${data.weather[0].icon}.png"/>
+<p>${data.weather[0].main}</p>
 `;
   main.innerHTML="";
   main.appendChild(weather);
 }
 
 function KtoC(k) {
-  return (k - 273.15).toFixed(1);
+  return Math.floor(k - 273.15);
 }
 
 form.addEventListener("submit", (ev) => {
