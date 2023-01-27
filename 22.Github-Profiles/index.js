@@ -3,11 +3,11 @@ const main = document.getElementById("main");
 const form = document.getElementById("form");
 const search = document.getElementById("search");
 
-getUser();
+getUser("MajaPetkova");
 async function getUser(username) {
   const res = await fetch(apiUrl + username);
   const data = await res.json();
-  console.log(data);
+  // console.log(data);
 
   createUserCard(data);
   getRepos(username);
@@ -27,7 +27,7 @@ function createUserCard(user) {
    </div>
      <div class="user-info">
         <h2>${user.name}</h2>
-        <p>${user.bio}</p>
+        <p>${user.bio }</p>
       <ul class="info">
        <li><strong>Followers:</strong> ${user.followers}</li>
        <li><strong>Following:</strong> ${user.following}</li>
@@ -61,7 +61,7 @@ form.addEventListener("submit", (ev) => {
   const user = search.value;
   if (user) {
     getUser(user);
-    user.value = "";
+    search.value = "";
   } else {
     main.innerHTML = "Please enter a GitHub username";
   }
