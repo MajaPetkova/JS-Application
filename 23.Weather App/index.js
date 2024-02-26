@@ -2,7 +2,7 @@ const main = document.querySelector("main");
 const form = document.querySelector("form");
 const search = document.getElementById("search");
 
-const apiKey = "3265874a2c77ae4a04bb96236a642d2f";
+const apiKey = "d22404f3506ac02f1d31c07bc45168fc";
 const url = (location) =>
   `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${apiKey}`;
 
