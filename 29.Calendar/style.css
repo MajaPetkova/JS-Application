@@ -13,7 +13,7 @@
 }
 .calendar{
     width: 300px;
-    height: 300px;
+    height: 250px;
     background-color: #fff;
     display: flex;
     align-items: center;
@@ -36,4 +36,8 @@
 }
 .left{
     width: 58%;
+}
+#date{
+    font-size: 100px;
+    line-height: 90px;
 }
