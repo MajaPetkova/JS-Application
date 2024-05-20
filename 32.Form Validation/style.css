@@ -78,3 +78,6 @@ form button {
 #submit-error{
     color: red;
 }
+.info-group span i{
+    color: seagreen; 
+}
