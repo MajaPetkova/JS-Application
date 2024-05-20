@@ -30,15 +30,15 @@
         </div>
         <div class="info-group">
           <label>Email</label>
-          <input type="email" placeholder="Enter your email" />
+          <input type="email" placeholder="Enter your email" id="email" onkeyup="validateEmail()"/>
           <span id="email-error"></span>
         </div>
         <div class="info-group">
           <label>Your Message</label>
-          <textarea placeholder="Enter your message" rows="5"></textarea>
+          <textarea placeholder="Enter your message" rows="5" id="message" onkeyup="validateMessage()"></textarea>
           <span id="msg-error"></span>
         </div>
-        <button>Submit</button>
+        <button onclick="return validateForm()">Submit</button>
         <span id="submit-error"></span>
       </form>
     </div>

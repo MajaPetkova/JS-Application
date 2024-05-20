@@ -35,3 +35,43 @@ function validatePhone() {
   phoneError.innerHTML = `<i class="fa-solid fa-circle-check"></i>`;
   return true;
 }
+function validateEmail() {
+  let email = document.getElementById("email").value;
+  if (email.length == 0) {
+    emailError.innerHTML = "Email is required";
+    return false;
+  }
+  if (!email.match(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/)) {
+    emailError.innerHTML = "Email invalid";
+    return false;
+  }
+  emailError.innerHTML = `<i class="fa-solid fa-circle-check"></i>`;
+  return true;
+}
+function validateMessage() {
+  let message = document.getElementById("message").value;
+  let required = 30;
+  let left = required - message.length;
+
+  if (left > 0) {
+    msgError.innerHTML = left + " more characters required";
+    return false;
+  }
+  msgError.innerHTML = `<i class="fa-solid fa-circle-check"></i>`;
+  return true;
+}
+function validateForm() {
+  if (
+    !validateEmail() ||
+    !validateName() ||
+    !validateMessage() ||
+    !validatePhone()
+  ) {
+    submitError.style.display = "block";
+    submitError.innerHTML = "Please fix error to submit";
+    setTimeout(function(){
+        submitError.style.display = "none";
+    },2000)
+    return false;
+  }
+}
