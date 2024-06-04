@@ -17,7 +17,6 @@ async function searchImg() {
 
   if (page === 1) {
     searchResult.innerHTML = "";
-    searchBox.value=""
   }
 
   const results = data.results;
