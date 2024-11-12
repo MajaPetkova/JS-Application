@@ -1,7 +1,7 @@
 <h1>Music App</h1>
-<p>Single Page Application created with Vanilla JS</p>
+<h2>Single Page Application created with Vanilla JS</h2>
 
-<p>Usage:</p>
+<h3>Usage:</h3>
 
 <p>To start the server</p>
 <p>cd server</p>
